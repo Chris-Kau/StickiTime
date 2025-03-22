@@ -37,7 +37,7 @@ function createWindow() {
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
     mainWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/`)
   } else {
-    mainWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/`)
+    mainWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/`)
   }
 }
 
@@ -65,7 +65,7 @@ app.whenReady().then(() => {
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
       } else {
-        timerWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/timer`)
+        timerWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/timer`)
       }
 
       timerWindow.on('close', ()=>{
@@ -85,7 +85,7 @@ app.whenReady().then(() => {
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         stickyNoteWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynote`)
       } else {
-        stickyNoteWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/stickynote`)
+        stickyNoteWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynote`)
       }
 
       stickyNoteWindow.on('close', ()=>{
@@ -103,7 +103,7 @@ app.whenReady().then(() => {
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         bookmarksWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/bookmarks`)
       } else {
-        bookmarksWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/bookmarks`)
+        bookmarksWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/bookmarks`)
       }
 
       bookmarksWindow.on('close', ()=>{
