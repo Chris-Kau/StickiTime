@@ -5,9 +5,10 @@ import icon from '../../resources/icon.png?asset'
 let timerWindow;
 let stickyNoteWindow;
 let bookmarksWindow;
+let screenSize;
+
 function createWindow() {
   // Create the browser window.
-  const screenSize = screen.getPrimaryDisplay().workAreaSize 
   const mainWindow = new BrowserWindow({
     width: screenSize.width / 2,
     height: 50,
@@ -45,6 +46,7 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  screenSize = screen.getPrimaryDisplay().workAreaSize
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -95,11 +97,21 @@ app.whenReady().then(() => {
   })
 
   ipcMain.on('open-bookmarks', () => {
+    const bookmarkWidth = 500
     if(!bookmarksWindow){
       bookmarksWindow = new BrowserWindow({
-        width: 500,
-        height: 500
+        width: bookmarkWidth,
+        height: screenSize.height / 2,
+        autoHideMenuBar: true,
+        titleBarStyle: "hidden",
+        alwaysOnTop: true,
       });
+
+      bookmarksWindow.on('ready-to-show', () => {
+        bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4)
+        bookmarksWindow.show()
+      })
+
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         bookmarksWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/bookmarks`)
       } else {

@@ -1,5 +1,6 @@
 import MenuBar from "./components/MenuBar"
 import StickyNote from "./components/StickyNote"
+import Bookmarks from "./components/Bookmarks";
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
         <Route path="/" element={<MenuBar/>} />
         <Route path="/timer" element={<MenuBar/>} />
         <Route path="/stickynote" element={<StickyNote/>} />
-        <Route path="/bookmarks" element={<MenuBar/>} />
+        <Route path="/bookmarks" element={<Bookmarks/>} />
       </Routes>
     </HashRouter>
 
