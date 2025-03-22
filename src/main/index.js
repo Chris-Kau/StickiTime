@@ -4,6 +4,7 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 let timerWindow;
 let bookmarksWindow;
+let addBookmarkWindow;
 let screenSize;
 let stickyNoteWindow;
 
@@ -107,6 +108,12 @@ app.whenReady().then(() => {
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
+        scrollbar: false,
+
+        webPreferences: {
+          preload: join(__dirname, '../preload/index.js'),
+          sandbox: false
+        }
       });
 
       bookmarksWindow.on('ready-to-show', () => {
@@ -125,6 +132,40 @@ app.whenReady().then(() => {
       })
     }else{
       bookmarksWindow.focus()
+    }
+  })
+
+  ipcMain.on('open-addBookmark', () => {
+    if(!addBookmarkWindow){
+      addBookmarkWindow = new BrowserWindow({
+        width: 500,
+        height: 500,
+        autoHideMenuBar: true,
+        alwaysOnTop: true,
+        scrollbar: false,
+
+        webPreferences: {
+          preload: join(__dirname, '../preload/index.js'),
+          sandbox: false
+        }
+      });
+
+      addBookmarkWindow.on('ready-to-show', () => {
+        addBookmarkWindow.setPosition(screenSize.width/2 - screenSize.width/4, screenSize.height/2 - screenSize.height / 4)
+        addBookmarkWindow.show()
+      })
+
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        addBookmarkWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/addbookmark`)
+      } else {
+        addBookmarkWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/addbookmark`)
+      }
+
+      addBookmarkWindow.on('close', ()=>{
+        addBookmarkWindow = null;
+      })
+    }else{
+      addBookmarkWindow.focus()
     }
   })
 
