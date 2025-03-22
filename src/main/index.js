@@ -3,9 +3,9 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 let timerWindow;
-let stickyNoteWindow;
 let bookmarksWindow;
 let screenSize;
+let stickyNoteWindow;
 
 function createWindow() {
   // Create the browser window.
@@ -62,7 +62,7 @@ app.whenReady().then(() => {
     if(!timerWindow){
       timerWindow = new BrowserWindow({
         width: 500,
-        height: 500
+        height: 500,
       });
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
@@ -82,17 +82,18 @@ app.whenReady().then(() => {
   ipcMain.on('open-sticky-note', () => {
       stickyNoteWindow = new BrowserWindow({
         width: 500,
-        height: 500
+        height: 500,
+        autoHideMenuBar: true,
+        webPreferences:{
+          preload: join(__dirname, '../preload/index.js'),
+          sandbox: false
+        }
       });
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         stickyNoteWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynote`)
       } else {
         stickyNoteWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynote`)
       }
-
-      stickyNoteWindow.on('close', ()=>{
-        stickyNoteWindow = null;
-      })
 
   })
 
@@ -146,3 +147,11 @@ app.on('window-all-closed', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// Handle the minimize event
+ipcMain.on('minimize-window', () => {
+  const window = BrowserWindow.getFocusedWindow();
+  if (window) {
+      window.minimize();
+  }
+});

@@ -1,6 +1,7 @@
 function StickyNote(){
     const brownPrimary = "#DDC7B9";
     const brownSecondary = "#FFF5F7";
+    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window')
     return(
             <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
                 {/* Top Bar */}
@@ -10,8 +11,8 @@ function StickyNote(){
                             <p><b>+</b></p>
                         </div>
                         <div className = "flex justify-end gap-3">
-                            <p><b>-</b></p>
-                            <p><b>x</b></p>
+                            <p onClick = {()=>minimizeWindow()}><b>-</b></p>
+                            <p onClick = {()=>window.close()}><b>x</b></p>
                         </div>
                     </div>
                 </div>
@@ -19,14 +20,26 @@ function StickyNote(){
                 {/* //Text Area */}
                 <div className="flex justify-center items-center w-[96%] min-h-[65%] mx-auto">
                     <div className="flex bg-[#FFF5F7] min-h-full min-w-full rounded-t-md p-2 ">
-                        <p>Text</p>
+                        <input className="min-h-full min-w-full" type="text" placeholder="Start typing..."></input>
                     </div>
                 </div>
 
                 {/* //Footer */}
                 <div className="flex justify-center items-center w-[96%] min-h-[10%] mt-1 mb-3 mx-auto">
                     <div className="flex bg-[#FFF5F7] min-h-full min-w-full rounded-b-md p-2 ">
-                        <p>Text</p>
+                    <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
+                        <div className = "flex float-left gap-1">
+                            <p>B</p>
+                            <p><i>I</i></p>
+                            <p>U</p>
+                            <p>abc</p>
+                            <p>=</p>
+                            <p>o</p>
+                        </div>
+                        <div className = "flex justify-end gap-3">
+                            <p>//</p>
+                        </div>
+                    </div>
                     </div>
                 </div>
             </div>
