@@ -7,7 +7,7 @@ let stickyNoteWindow;
 let bookmarksWindow;
 function createWindow() {
   // Create the browser window.
-  const screenSize = screen.getPrimaryDisplay().workAreaSize
+  const screenSize = screen.getPrimaryDisplay().workAreaSize 
   const mainWindow = new BrowserWindow({
     width: screenSize.width / 2,
     height: 50,
