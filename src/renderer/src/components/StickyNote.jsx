@@ -5,14 +5,14 @@ function StickyNote(){
     return(
             <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
                 {/* Top Bar */}
-                <div className="flex justify-center self-center items-center w-[95%] min-h-[15%] mx-auto">
+                <div className="flex justify-center self-center items-center w-[95%] min-h-[15%] mx-auto" id="draggable">
                     <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
                         <div className = "flex float-left">
-                            <p><b>+</b></p>
+                            <p id="not-draggable"><b>+</b></p>
                         </div>
                         <div className = "flex justify-end gap-3">
-                            <p onClick = {()=>minimizeWindow()}><b>-</b></p>
-                            <p onClick = {()=>window.close()}><b>x</b></p>
+                            <p onClick = {()=>minimizeWindow()} id="not-draggable"><b>-</b></p>
+                            <p onClick = {()=>window.close()} id="not-draggable"><b>x</b></p>
                         </div>
                     </div>
                 </div>

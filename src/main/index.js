@@ -84,6 +84,7 @@ app.whenReady().then(() => {
         width: 500,
         height: 500,
         autoHideMenuBar: true,
+        titleBarStyle: "hidden",
         webPreferences:{
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
