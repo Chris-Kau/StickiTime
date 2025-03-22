@@ -1,15 +1,20 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-
+let timerWindow;
+let stickyNoteWindow;
+let bookmarksWindow;
 function createWindow() {
   // Create the browser window.
+  const screenSize = screen.getPrimaryDisplay().workAreaSize
   const mainWindow = new BrowserWindow({
-    width: 900,
-    height: 670,
+    width: screenSize.width / 2,
+    height: 50,
     show: false,
     autoHideMenuBar: true,
+    titleBarStyle: "hidden",
+    alwaysOnTop: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -18,6 +23,7 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
+    mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0)
     mainWindow.show()
   })
 
@@ -29,9 +35,9 @@ function createWindow() {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(process.env['ELECTRON_RENDERER_URL'])
+    mainWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/`)
   } else {
-    mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
+    mainWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/`)
   }
 }
 
@@ -49,8 +55,64 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  // IPC test
-  ipcMain.on('ping', () => console.log('pong'))
+  // IPC open windows
+  ipcMain.on('open-timer', () => {
+    if(!timerWindow){
+      timerWindow = new BrowserWindow({
+        width: 500,
+        height: 500
+      });
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
+      } else {
+        timerWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/timer`)
+      }
+
+      timerWindow.on('close', ()=>{
+        timerWindow = null;
+      })
+    }else{
+      timerWindow.focus()
+    }
+
+  })
+
+  ipcMain.on('open-sticky-note', () => {
+      stickyNoteWindow = new BrowserWindow({
+        width: 500,
+        height: 500
+      });
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        stickyNoteWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynote`)
+      } else {
+        stickyNoteWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/stickynote`)
+      }
+
+      stickyNoteWindow.on('close', ()=>{
+        stickyNoteWindow = null;
+      })
+
+  })
+
+  ipcMain.on('open-bookmarks', () => {
+    if(!bookmarksWindow){
+      bookmarksWindow = new BrowserWindow({
+        width: 500,
+        height: 500
+      });
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        bookmarksWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/bookmarks`)
+      } else {
+        bookmarksWindow.loadFile(`${join(__dirname, '../renderer/index.html')}#/bookmarks`)
+      }
+
+      bookmarksWindow.on('close', ()=>{
+        bookmarksWindow = null;
+      })
+    }else{
+      bookmarksWindow.focus()
+    }
+  })
 
   createWindow()
 
