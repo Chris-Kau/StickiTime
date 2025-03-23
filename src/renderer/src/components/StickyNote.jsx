@@ -42,6 +42,7 @@ function StickyNote(){
                     <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
                         <div className = "flex float-left">
                             <p id="not-draggable"><b>+</b></p>
+                            
                         </div>
                         <div className = "flex justify-end gap-3">
                             <p onClick = {()=>minimizeWindow()} id="not-draggable"><b>-</b></p>

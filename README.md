@@ -32,3 +32,6 @@ $ npm run build:mac
 # For Linux
 $ npm run build:linux
 ```
+
+
+### Icons provided by `https://github.com/hackernoon/pixel-icon-library?tab=readme-ov-file`
