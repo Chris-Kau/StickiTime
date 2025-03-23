@@ -16,7 +16,7 @@ function createWindow() {
   const mainWindow = new BrowserWindow({
     width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
     // width: 800,
-    height: 50,
+    height: 70,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: "hidden",
@@ -172,8 +172,8 @@ app.whenReady().then(() => {
   ipcMain.on('open-addBookmark', () => {
     if(!addBookmarkWindow){
       addBookmarkWindow = new BrowserWindow({
-        width: 500,
-        height: 500,
+        width: 400,
+        height: 250,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
