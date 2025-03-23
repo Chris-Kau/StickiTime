@@ -210,7 +210,7 @@ app.whenReady().then(() => {
   function openStickyFolder() {
     if(!stickyFolderWindow){
       stickyFolderWindow = new BrowserWindow({
-        width: 200,
+        width: 190,
         height: 500, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
         // height: 500,
         autoHideMenuBar: true,
@@ -224,10 +224,11 @@ app.whenReady().then(() => {
           sandbox: false
         }
       });
-
       stickyFolderWindow.hide()
-      stickyFolderWindow.setPosition(screenSize.width / 2 + 200, 72)
+
       stickyFolderWindow.on('ready-to-show', () => {
+        stickyFolderWindow.setPosition(screenSize.width / 2 + 191, 72)
+
         // stickyFolderWindow.show()
       })
 
