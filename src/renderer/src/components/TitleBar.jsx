@@ -31,7 +31,7 @@ function TitleBar({hasThumbtack = true}){
                             onMouseEnter={() => setIsThumbtackHovered(true)}
                             onMouseLeave={() => setIsThumbtackHovered(false)}
                             >
-                            {isWindowPinned ? (<ThumbtackSolidIcon className="w-4 h-4 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? ( <ThumbtackSolidIcon className="w-4 h-4 hover:scale-125" />) : (<ThumbtackIcon className="w-4 h-4 hover:scale-125" />))}
+                            {isWindowPinned ? (<ThumbtackSolidIcon className="w-4 h-4 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? ( <ThumbtackSolidIcon className="w-4 h-4 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-4 h-4 hover:scale-125 fill-[#747474]" />))}
                         </div>
                     </div>) : <div></div>)}
                 
