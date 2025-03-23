@@ -86,10 +86,15 @@ app.whenReady().then(() => {
 
   ipcMain.on('open-sticky-note', () => {
       stickyNoteWindow = new BrowserWindow({
-        width: 500,
-        height: 500,
+        width: 300,
+        height: 300,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
+        maxWidth: 450,
+        maxHeight: 450,
+        minWidth: 200,
+        minHeight: 200,
+
         webPreferences:{
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
@@ -114,7 +119,6 @@ app.whenReady().then(() => {
         titleBarStyle: "hidden",
         alwaysOnTop: true,
         scrollbar: false,
-
         webPreferences: {
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
