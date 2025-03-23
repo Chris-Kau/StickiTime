@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import StickyFolder from '../renderer/src/components/StickyFolder'
 const fetch = require('node-fetch')
 let timerWindow;
 let bookmarksWindow;
@@ -268,10 +269,15 @@ app.on('window-all-closed', () => {
 // code. You can also put them in separate files and require them here.
 
 // Handle the minimize event
-ipcMain.on('minimize-window', () => {
+ipcMain.on('minimize-window', (event, isStickyNote) => {
   const window = BrowserWindow.getFocusedWindow();
   if (window) {
+    if(!isStickyNote)
       window.minimize();
+    else{
+      window.hide()
+      stickyFolderWindow.webContents.send('receive-stickynote', "name")
+    }
   }
 });
 

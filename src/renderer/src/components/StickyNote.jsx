@@ -41,9 +41,9 @@ function StickyNote(){
         }, []);
 
     return(
-        <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
-            {/* Top Bar */}
-            <TitleBar/>
+            <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
+                {/* Top Bar */}
+                <TitleBar isStickyNote={true}/>
 
             {/* //Text Area */}
             <div className="flex w-full min-h-[65%] overflow-x-hidden px-1">

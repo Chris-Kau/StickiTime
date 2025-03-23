@@ -7,12 +7,12 @@ import MinusIcon from '../../../../resources/icons/yay_xm_icons/mm.svg?react';
 import MinusSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse mm.svg?react';
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
-function TitleBar({hasThumbtack = true, topleftText = ""}){
+function TitleBar({hasThumbtack = true, topleftText = "", isStickyNote=false}){
     const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
     const [isClosedHovered, setIsClosedHovered] = useState(false);
     const [isWindowPinned, setIsWindowPinned] = useState(false);
     const [isMinimizeHovered, setIsMinimizeHovered] = useState(false);
-    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window');
+    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window', isStickyNote);
     const pinWindow = () =>{ 
         window.electron.ipcRenderer.send('pin-window')
         if (isWindowPinned)

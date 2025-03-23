@@ -1,7 +1,13 @@
 import { useState } from "react";
+import StickyNoteIcon from "./StickyNoteIcon"
 
-function StickyFolder() {
+function StickyFolder(id, name) {
     const [stickynotes, setStickynotes] = useState([])
+
+    window.electron.ipcRenderer.on('receive-stickynote', function(event, data) {
+        console.log("data".concat(' ', data))
+        addStickyNote(data.name)
+    })
 
     function addStickyNote(name) {
         setStickynotes([...stickynotes, { id: crypto.randomUUID(), name: name}]);
@@ -20,7 +26,7 @@ function StickyFolder() {
                 >
                 {/* Dynamic Bookmarks */}
                 {stickynotes.map((stickynote) => (
-                <Bookmark
+                <StickyNoteIcon
                     key={stickynote.id}
                     id={stickynote.id}
                     name={stickynote.name}
