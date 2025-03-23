@@ -5,12 +5,23 @@ function AddBookMark() {
     const [name, setName] = useState('');
     const [hyperlink, setHyperlink] = useState('');
 
+    const hyperlinkInput = document.getElementById("hyperlinkID")
+
     const sendInfo = (data) => window.electron.ipcRenderer.send('addingBookMark', data);
 
     function submitForm(e) {
         e.preventDefault();
         console.log("Selected values:", { name, hyperlink, selectedIcon });
-        sendInfo({ name, hyperlink, icon: selectedIcon });
+        console.log(hyperlink.toString())
+        let url = hyperlink.toString()
+        console.log(url.slice(0, 8))
+        let newDiv = document.getElementById("ErrorMsg")
+        if (url.slice(0, 7) == "http://" || url.slice(0, 8) == "https://") {
+            sendInfo({ name, hyperlink, icon: selectedIcon });
+            newDiv.innerHTML = "&nbsp;"
+        } else {
+            newDiv.innerHTML = "ERROR: URL not found"
+        }
     }
 
     return (
@@ -26,15 +37,16 @@ function AddBookMark() {
                         onChange={(e) => setName(e.target.value)}
                     />
                 </label>
-                <label htmlFor="hyperlink">
+                <label htmlFor="hyperlink" id='hyperlinkID'>
                     <p>Hyperlink:</p>
                     <input 
                         id="hyperlink" 
                         type="text" 
                         className="border-1 w-full"
                         value={hyperlink}
-                        onChange={(e) => setHyperlink(e.target.value)}
+                        onChange={(e) =>{ setHyperlink(e.target.value) }}
                     />
+                    <div id="ErrorMsg" className='text-red-600'>&nbsp;</div>
                 </label>
                 <div>
                     <p>Icons:</p>

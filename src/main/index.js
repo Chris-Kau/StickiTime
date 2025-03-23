@@ -2,6 +2,7 @@ import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+const fetch = require('node-fetch')
 let timerWindow;
 let bookmarksWindow;
 let addBookmarkWindow;
@@ -127,9 +128,8 @@ app.whenReady().then(() => {
         }
       });
 
+      bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4)
       bookmarksWindow.on('ready-to-show', () => {
-        bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4) // AAAHHHHHHHHHHH
-        // bookmarksWindow.setPosition(2000 - bookmarkWidth, 1000/2 - 1000 / 4)
         bookmarksWindow.show()
       })
 
@@ -145,6 +145,17 @@ app.whenReady().then(() => {
     }else{
       bookmarksWindow.focus()
     }
+  
+    bookmarksWindow.webContents.setWindowOpenHandler(({ url }) => {
+      console.log(url)
+      OpenURL(url);
+      return { action: 'deny' };
+    });
+    
+    async function OpenURL(url) {
+      await shell.openExternal(url)
+    }
+
   })
 
   ipcMain.on('open-addBookmark', () => {
@@ -161,9 +172,9 @@ app.whenReady().then(() => {
           sandbox: false
         }
       });
-
+      
+      addBookmarkWindow.setPosition(screenSize.width/2 - screenSize.width/4, screenSize.height/2 - screenSize.height / 4)
       addBookmarkWindow.on('ready-to-show', () => {
-        addBookmarkWindow.setPosition(screenSize.width/2 - screenSize.width/4, screenSize.height/2 - screenSize.height / 4)
         addBookmarkWindow.show()
       })
 
@@ -221,3 +232,17 @@ ipcMain.on('addingBookMark', function(event, data) {
   console.log(data)
   bookmarksWindow.webContents.send('receive-bookmark', data);
 });
+
+
+
+ipcMain.handle('fetch-favicon', async (_, url) => {
+  try {
+    const domain = new URL(url).hostname
+    const response = await fetch(`https://www.google.com/s2/favicons?domain=${domain}&sz=64`)
+    const buffer = await response.buffer()
+    return `data:image/png;base64,${buffer.toString('base64')}`
+  } catch (error) {
+    // Return a default icon as base64
+    return "data:image/png;base64,..."
+  }
+})
