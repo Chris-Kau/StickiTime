@@ -1,7 +1,9 @@
 function AddBookMark() {
-    
+    const sendInfo = (data) => window.electron.ipcRenderer.send('addingBookMark', data)
+
     function submitForm() {
         console.log("YIPPIE")
+        sendInfo("Yippie")
     }
 
     return (

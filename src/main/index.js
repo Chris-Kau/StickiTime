@@ -197,3 +197,8 @@ ipcMain.on('minimize-window', () => {
       window.minimize();
   }
 });
+
+ipcMain.on('addingBookMark', function(event, data) {
+  console.log(data)
+  bookmarksWindow.webContents.send('receive-bookmark', data);
+});
