@@ -8,10 +8,6 @@ import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
 import TitleBar from './TitleBar';
 function StickyNote(){
     const [content, setContent] = useState('');
-    // const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
-    // const [isClosedHovered, setIsClosedHovered] = useState(false);
-    // const [isWindowPinned, setIsWindowPinned] = useState(false);
-    // const [isMinimizeHovered, setIsMinimizeHovered] = useState(false);
     const editorRef = useRef(null);
         const handleInput = () => {
             const html = editorRef.current.innerHTML;
@@ -43,14 +39,6 @@ function StickyNote(){
             editorRef.current.focus();
         }, []);
 
-    // const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window');
-    // const pinWindow = () =>{ 
-    //     window.electron.ipcRenderer.send('pin-window')
-    //     if (isWindowPinned)
-    //         setIsWindowPinned(false)
-    //     else
-    //         setIsWindowPinned(true)
-    // };
     return(
             <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
                 {/* Top Bar */}
@@ -68,7 +56,6 @@ function StickyNote(){
                             data-placeholder="Start typing..."
                         />
                         </div>
-
                 </div>
 
                 {/* //Footer */}

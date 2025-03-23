@@ -21,7 +21,7 @@ function TitleBar({hasThumbtack = true}){
             setIsWindowPinned(true)
     };
     return(
-        <div className="flex justify-center self-center items-center w-[95%] min-h-[15%] mx-auto" id="draggable">
+        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
         <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
             <div className = "flex float-left">
                 {(hasThumbtack ? (<div className = "flex justify-center items-center align-middle pt-2 pb-2">
