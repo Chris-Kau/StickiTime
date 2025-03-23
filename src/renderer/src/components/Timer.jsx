@@ -71,9 +71,9 @@ function Timer({ }) {
 
 
     return (
-      <div className="p-4 flex flex-col justify-center items-center space-y-4 bg-gray-100 rounded-lg shadow-md min-w-screen min-h-screen ">
+      <div className="overflow-hidden overflow-y-hidden">
         <TitleBar/>
-
+        <div className=" flex flex-col justify-center items-center bg-gray-100 rounded-lg shadow-md min-w-screen min-h-[calc(screen - 10%)] ">
         <div className="grid grid-rows-3">
           {/* Work Phase */}
           <div className="flex justify-center align-middle items-center space-x-2 text-4xl ">
@@ -127,7 +127,9 @@ function Timer({ }) {
               </button>
         </div>
         </div>
+        </div>
       </div>
+     
     );
 
 }
