@@ -34,4 +34,6 @@ $ npm run build:linux
 ```
 
 
-### Icons provided by `https://github.com/hackernoon/pixel-icon-library?tab=readme-ov-file`
+ Icons provided by: `https://github.com/hackernoon/pixel-icon-library?tab=readme-ov-file`
+
+ Jersey 10 Font provided by: `https://fonts.google.com/specimen/Jersey+10`
