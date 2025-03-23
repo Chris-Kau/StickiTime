@@ -24,6 +24,7 @@ function Bookmark({ name, hyperlink, icon_option}) {
             >
                 {name}
             </a>
+            <p>X</p>
         </div>
     )
 }

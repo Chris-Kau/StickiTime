@@ -164,6 +164,7 @@ app.whenReady().then(() => {
         width: 500,
         height: 500,
         autoHideMenuBar: true,
+        titleBarStyle: "hidden",
         alwaysOnTop: true,
         scrollbar: false,
 

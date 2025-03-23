@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TitleBar from './TitleBar';
 
 function AddBookMark() {
     const [selectedIcon, setSelectedIcon] = useState('');
@@ -26,6 +27,7 @@ function AddBookMark() {
 
     return (
         <div className="bg-amber-100 h-screen px-3">
+            <TitleBar hasThumbtack={false} ></TitleBar>
             <form onSubmit={(e) => submitForm(e)}>
                 <label htmlFor="name">
                     <p>Name:</p>
@@ -48,26 +50,8 @@ function AddBookMark() {
                     />
                     <div id="ErrorMsg" className='text-red-600'>&nbsp;</div>
                 </label>
-                <div>
-                    <p>Icons:</p>
-                    <ul className="grid grid-cols-2">
-                        {['icon1', 'icon2', 'icon3', 'icon4'].map((icon) => (
-                            <li key={icon}>
-                                <label>
-                                    <input 
-                                        type="radio" 
-                                        name="icon" 
-                                        value={icon}
-                                        checked={selectedIcon === icon}
-                                        onChange={(e) => setSelectedIcon(e.target.value)}
-                                    />
-                                    {icon}
-                                </label>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <input type="submit" value="Submit" className="border-1"/>
+                
+                <input type="submit" value="Submit" className="border-1 px-1"/>
             </form>
         </div>
     )
