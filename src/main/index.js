@@ -68,7 +68,7 @@ app.whenReady().then(() => {
     if(!timerWindow){
       timerWindow = new BrowserWindow({
         width: 350,
-        height: 300,
+        height: 250,
         resizable: false,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
