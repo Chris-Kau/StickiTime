@@ -3,22 +3,18 @@ import { useState, useRef, useEffect } from 'react';
 function StickyNote(){
     const [content, setContent] = useState('');
     const editorRef = useRef(null);
-    const saveCursorPosition = useRef(null);
 
-        // Handle content changes
         const handleInput = () => {
             const html = editorRef.current.innerHTML;
             lastHtml.current = html;
             setPlaceholderVisible(html === '');
         };
     
-        // Save selection before formatting
         const saveSelection = () => {
             const sel = window.getSelection();
             return sel.rangeCount > 0 ? sel.getRangeAt(0) : null;
         };
     
-        // Restore selection after formatting
         const restoreSelection = (range) => {
             if (range) {
                 const sel = window.getSelection();
@@ -34,7 +30,6 @@ function StickyNote(){
             editorRef.current.focus();
         };
     
-        // Initialize content
         useEffect(() => {
             editorRef.current.focus();
         }, []);
@@ -58,7 +53,6 @@ function StickyNote(){
                 {/* //Text Area */}
                 <div className="flex w-[96%] min-h-[65%] mx-auto overflow-x-hidden">
                         <div className="flex bg-[#FFF5F7] min-h-auto min-w-full rounded-t-md p-2 ">
-                            {/* <textarea className="min-h-full min-w-full" placeholder="Start typing..." id = "noteTextArea"></textarea> */}
                             <div
                             ref={editorRef}
                             className="min-h-full min-w-full outline-none"
@@ -76,12 +70,7 @@ function StickyNote(){
                     <div className="flex bg-[#FFF5F7] min-h-full min-w-full rounded-b-md p-2 ">
                     <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
                         <div className = "flex float-left gap-1">
-                            {/* <p>B</p>
-                            <p><i>I</i></p>
-                            <p>U</p>
-                            <p>abc</p>
-                            <p>=</p>
-                            <p>o</p> */}
+
                             <button onClick={() => formatText('bold')}>B</button>
                             <button onClick={() => formatText('italic')}><i>I</i></button>
                             <button onClick={() => formatText('underline')}>U</button>
