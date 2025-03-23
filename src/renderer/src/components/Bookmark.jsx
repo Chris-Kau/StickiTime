@@ -1,8 +1,8 @@
-function Bookmark({ classname, hyperlink }) {
+function Bookmark({ name, hyperlink, icon }) {
     console.log("Is this working?")
     return (
-        <div className={classname}>
-            {hyperlink}
+        <div href={hyperlink}>
+            {name}
         </div>
     )
 }

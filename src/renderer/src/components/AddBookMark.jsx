@@ -1,31 +1,60 @@
-function AddBookMark() {
-    const sendInfo = (data) => window.electron.ipcRenderer.send('addingBookMark', data)
+import { useState } from 'react';
 
-    function submitForm() {
-        console.log("YIPPIE")
-        sendInfo("Yippie")
+function AddBookMark() {
+    const [selectedIcon, setSelectedIcon] = useState('');
+    const [name, setName] = useState('');
+    const [hyperlink, setHyperlink] = useState('');
+
+    const sendInfo = (data) => window.electron.ipcRenderer.send('addingBookMark', data);
+
+    function submitForm(e) {
+        e.preventDefault();
+        console.log("Selected values:", { name, hyperlink, selectedIcon });
+        sendInfo({ name, hyperlink, icon: selectedIcon });
     }
 
     return (
         <div className="bg-amber-100 h-screen px-3">
-            <form onClick={() => {submitForm()}}>
-                <label htmlFor="">
+            <form onSubmit={(e) => submitForm(e)}>
+                <label htmlFor="name">
                     <p>Name:</p>
-                    <input type="text" name="name" className="border-1 w-full"/>
+                    <input 
+                        id="name" 
+                        type="text" 
+                        className="border-1 w-full"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                    />
                 </label>
-                <label htmlFor="">
+                <label htmlFor="hyperlink">
                     <p>Hyperlink:</p>
-                    <input type="text" name="name" className="border-1 w-full"/>
+                    <input 
+                        id="hyperlink" 
+                        type="text" 
+                        className="border-1 w-full"
+                        value={hyperlink}
+                        onChange={(e) => setHyperlink(e.target.value)}
+                    />
                 </label>
-                <label>
+                <div>
                     <p>Icons:</p>
-                    <div className="grid grid-cols-2">
-                        <input type="Radio" placeholder=""/>
-                        <input type="Radio" />
-                        <input type="Radio" />
-                        <input type="Radio" />
-                    </div>
-                </label>
+                    <ul className="grid grid-cols-2">
+                        {['icon1', 'icon2', 'icon3', 'icon4'].map((icon) => (
+                            <li key={icon}>
+                                <label>
+                                    <input 
+                                        type="radio" 
+                                        name="icon" 
+                                        value={icon}
+                                        checked={selectedIcon === icon}
+                                        onChange={(e) => setSelectedIcon(e.target.value)}
+                                    />
+                                    {icon}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
                 <input type="submit" value="Submit" className="border-1"/>
             </form>
         </div>

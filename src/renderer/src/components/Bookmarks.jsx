@@ -1,17 +1,37 @@
 import Bookmark from "./Bookmark"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Bookmarks() {
+    const [bookmarks, setBookmarks] = useState([])
+
     const openAddBookmark = () => window.electron.ipcRenderer.send('open-addBookmark')
     // const receiverBookmark = () => window.electron.ipcRenderer.receive('receive-bookmark')
-    window.electron.ipcRenderer.on('receive-bookmark', function(event,data){
-        console.log("DATA".concat(' ', data))
+
+    // useEffect(() => {
+    //     // Add IPC listener when component mounts
+    //     const receiveBookmarkHandler = (event, data) => {
+    //         console.log("Received bookmark:", data)
+    //         setBookmarks(prev => [...prev, {
+    //             hyperlink: data.hyperlink,
+    //             name: data.name,
+    //             icon: data.icon,
+    //         }])
+    //     }
+
+    //     window.electron.ipcRenderer.on('receive-bookmark', (e, d) => {receiveBookmarkHandler(e, d)})
+
+    //     // Cleanup listener when component unmounts
+    //     return () => {
+    //         // window.electron.ipcRenderer.removeListener('receive-bookmark', handleBookmarkReceive)
+    //     }
+    // }, []) // Empty dependency array means this runs once on mount
+
+    window.electron.ipcRenderer.on('receive-bookmark', function(event, data) {
+        console.log("data".concat(' ', data))
+        addBookmark(data.name, data.hyperlink, data.icon)
     })
-
-
-    const [bookmarks, setBookmarks] = useState([]);
-    function addBookmark() {
-        setBookmarks([...bookmarks, { classname: "", hyperlink: "Hello" }]);
+    function addBookmark(name, hyperlink, icon) {
+        setBookmarks([...bookmarks, { name: name, hyperlink: hyperlink, icon: icon }]);
     }
 
     return (
@@ -26,7 +46,7 @@ function Bookmarks() {
                 </div>
 
                 {bookmarks.map((bookmark, index) => (
-                    <Bookmark key={index} classname={bookmark.classname} hyperlink={bookmark.hyperlink} />
+                    <Bookmark key={index} name={bookmark.name} hyperlink={bookmark.hyperlink} icon={bookmark.icon}/>
                 ))}
                 
             </div>
