@@ -71,12 +71,12 @@ function Timer({ }) {
 
 
     return (
-      <div className="p-4 flex flex-col justify-center items-center space-y-4 bg-gray-100 rounded-lg shadow-md min-w-screen min-h-screen">
-        <div className="flex space-x-2 text-2xl font-mono">
+      <div className="p-4 flex flex-col justify-center items-center space-y-4 bg-gray-100 rounded-lg shadow-md min-w-screen min-h-screen bg-[url(../../../../resources/timerbg.gif)] bg-no-repeat bg-cover">
+        <div className="flex space-x-2 text-2xl">
             <span>{isWorkPhase ? "Work Time!" : "Break Time!"}</span>
         </div>
 
-        <div className="flex space-x-2 text-2xl font-mono">
+        <div className="flex space-x-2 text-2xl">
             {editing ? (
             <input
                 type="number"

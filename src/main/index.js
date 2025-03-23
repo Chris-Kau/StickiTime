@@ -68,6 +68,7 @@ app.whenReady().then(() => {
       timerWindow = new BrowserWindow({
         width: 350,
         height: 300,
+        autoHideMenuBar: true,
       });
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
