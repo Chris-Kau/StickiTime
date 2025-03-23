@@ -11,8 +11,8 @@ let stickyNoteWindow;
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    // width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
-    width: 800,
+    width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
+    // width: 800,
     height: 50,
     show: false,
     autoHideMenuBar: true,
@@ -26,8 +26,8 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
-    // mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
-    mainWindow.setPosition(500, 0)
+    mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
+    // mainWindow.setPosition(500, 0)
     mainWindow.show()
   })
 
@@ -108,8 +108,8 @@ app.whenReady().then(() => {
     if(!bookmarksWindow){
       bookmarksWindow = new BrowserWindow({
         width: bookmarkWidth,
-        // height: screenSize.height / 2, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
-        height: 500,
+        height: screenSize.height / 2, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+        // height: 500,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
@@ -122,8 +122,8 @@ app.whenReady().then(() => {
       });
 
       bookmarksWindow.on('ready-to-show', () => {
-        // bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4) // AAAHHHHHHHHHHH
-        bookmarksWindow.setPosition(2000 - bookmarkWidth, 1000/2 - 1000 / 4)
+        bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4) // AAAHHHHHHHHHHH
+        // bookmarksWindow.setPosition(2000 - bookmarkWidth, 1000/2 - 1000 / 4)
         bookmarksWindow.show()
       })
 
