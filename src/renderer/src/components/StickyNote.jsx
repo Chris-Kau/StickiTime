@@ -6,6 +6,8 @@ import ItalicsIcon from '../../../../resources/icons/regular/italics.svg?react';
 import WindowCloseIcon from '../../../../resources/icons/regular/window-close.svg?react';
 import BulletIcon from '../../../../resources/icons/regular/bullet-list.svg?react';
 import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
+import MinusIcon from '../../../../resources/icons/regular/minus.svg?react';
+import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 function StickyNote(){
     const [content, setContent] = useState('');
     const editorRef = useRef(null);
@@ -46,12 +48,16 @@ function StickyNote(){
                 <div className="flex justify-center self-center items-center w-[95%] min-h-[15%] mx-auto" id="draggable">
                     <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
                         <div className = "flex float-left">
-                            <p id="not-draggable"><b>+</b></p>
+                            <div className = "flex justify-center items-center align-middle pt-2 pb-2">
+                                <p id="not-draggable"><ThumbtackIcon className = "w-4 h-4"/></p>    
+                            </div>
 
                         </div>
                         <div className = "flex justify-end gap-3">
-                            <p onClick = {()=>minimizeWindow()} id="not-draggable"><b>-</b></p>
-                            <p onClick = {()=>window.close()} id="not-draggable"><b>x</b></p>
+                            <div className = "flex justify-center items-center align-middle pt-2 pb-2 gap-2">
+                                <p onClick = {()=>minimizeWindow()} id="not-draggable"><MinusIcon className = "w-4 h-4"/></p>
+                                <p onClick = {()=>window.close()} id="not-draggable"><WindowCloseIcon className = "w-4 h-4"/></p>
+                            </div>
                         </div>
                     </div>
                 </div>
