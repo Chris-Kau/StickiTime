@@ -9,12 +9,14 @@ let addBookmarkWindow;
 let screenSize;
 let stickyNoteWindow;
 
+
+
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
     // width: 800,
-    height: 50,
+    height: 70,
     show: false,
     autoHideMenuBar: true,
     titleBarStyle: "hidden",
@@ -117,13 +119,11 @@ app.whenReady().then(() => {
       }
 
   })
-
-  ipcMain.on('open-bookmarks', () => {
-    const bookmarkHeight = 500
+  function openBookmark() {
     if(!bookmarksWindow){
       bookmarksWindow = new BrowserWindow({
         width: 200,
-        height: bookmarkHeight, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+        height: 500, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
         // height: 500,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
@@ -137,9 +137,10 @@ app.whenReady().then(() => {
         }
       });
 
-      bookmarksWindow.setPosition(screenSize.width / 2, 50)
+      bookmarksWindow.setPosition(screenSize.width / 2 - 10, 50)
       bookmarksWindow.on('ready-to-show', () => {
-        bookmarksWindow.show()
+        // bookmarksWindow.show()
+        bookmarksWindow.hide()
       })
 
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
@@ -164,14 +165,15 @@ app.whenReady().then(() => {
     async function OpenURL(url) {
       await shell.openExternal(url)
     }
+  }
+  openBookmark()
 
-  })
 
   ipcMain.on('open-addBookmark', () => {
     if(!addBookmarkWindow){
       addBookmarkWindow = new BrowserWindow({
-        width: 500,
-        height: 500,
+        width: 400,
+        height: 250,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
@@ -203,6 +205,7 @@ app.whenReady().then(() => {
   })
 
   createWindow()
+
 
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -254,5 +257,16 @@ ipcMain.handle('fetch-favicon', async (_, url) => {
   } catch (error) {
     // Return a default icon as base64
     return "data:image/png;base64,..."
+  }
+})
+
+ipcMain.on('close-open-window', (event, action = 'close', window) => {
+  const win = eval(window);
+  if (!win) return;
+
+  if (action == 'close') {
+    win.hide()
+  } else {
+    win.show()
   }
 })

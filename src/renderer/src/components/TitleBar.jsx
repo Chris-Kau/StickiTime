@@ -7,7 +7,7 @@ import MinusIcon from '../../../../resources/icons/yay_xm_icons/mm.svg?react';
 import MinusSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse mm.svg?react';
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
-function TitleBar({hasThumbtack = true}){
+function TitleBar({hasThumbtack = true, topleftText = ""}){
     const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
     const [isClosedHovered, setIsClosedHovered] = useState(false);
     const [isWindowPinned, setIsWindowPinned] = useState(false);
@@ -33,7 +33,7 @@ function TitleBar({hasThumbtack = true}){
                             >
                             {isWindowPinned ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? ( <ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />))}
                         </div>
-                    </div>) : <div></div>)}
+                    </div>) : <div className="text-3xl">{topleftText}</div>)}
                 
 
             </div>

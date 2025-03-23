@@ -5,9 +5,9 @@ function Bookmarks() {
     const [bookmarks, setBookmarks] = useState([])
 
     // Animation handler
-    const handleClose = () => {
-        window.electron.ipcRenderer.send('animate-close-window');
-    };
+    // const handleClose = () => {
+    //     window.electron.ipcRenderer.send('animate-close-window');
+    // };
 
     const openAddBookmark = () => window.electron.ipcRenderer.send('open-addBookmark')
 
@@ -25,7 +25,7 @@ function Bookmarks() {
     }
 
     return (
-        <div className="flex flex-col h-screen bg-gray-50">
+        <div className="flex flex-col h-screen bg-[#EFBFA7]">
             {/* Scrollable Content Area */}
             <div 
                 className="flex-1 overflow-y-auto p-2 space-y-2"
@@ -44,9 +44,9 @@ function Bookmarks() {
             </div>
 
             {/* Sticky Add Button */}
-            <div className="sticky bottom-0 p-3 bg-white border-t">
+            <div className="sticky bottom-0 p-3 bg-[#EFBFA7]">
                 <button
-                    className="w-full flex items-center justify-center p-2 space-x-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
+                    className="border-t-2 w-full flex items-center justify-center p-2 space-x-2 text-gray-500 hover:text-white"
                     onClick={openAddBookmark}
                 >
                     <span className="text-xl">+</span>
