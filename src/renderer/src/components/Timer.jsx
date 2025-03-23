@@ -71,7 +71,7 @@ function Timer({ }) {
 
 
     return (
-      <div className="p-4 flex flex-col items-center space-y-4 bg-gray-100 rounded-lg shadow-md w-64">
+      <div className="p-4 flex flex-col justify-center items-center space-y-4 bg-gray-100 rounded-lg shadow-md min-w-screen min-h-screen">
         <div className="flex space-x-2 text-2xl font-mono">
             <span>{isWorkPhase ? "Work Time!" : "Break Time!"}</span>
         </div>
