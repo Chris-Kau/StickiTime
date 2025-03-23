@@ -98,7 +98,7 @@ function StickyNote(){
 
                 {/* //Text Area */}
                 <div className="flex w-full min-h-[65%] overflow-x-hidden px-1">
-                        <div className="flex bg-[#FFF5F7] min-h-auto w-full rounded-t-md p-2 mx-auto max-w-[calc(100%-8px)]">
+                        <div className="flex bg-[#FAF7F4] min-h-auto w-full rounded-t-md p-2 mx-auto max-w-[calc(100%-8px)]">
                             <div
                             ref={editorRef}
                             className="min-h-full min-w-full outline-none"
@@ -114,18 +114,13 @@ function StickyNote(){
                 {/* //Footer */}
                 <div className="flex justify-center items-center w-full min-h-[10%] mt-1 mb-3 px-1">
                     <div className="flex bg-[#FFF5F7] min-h-full w-full rounded-b-md p-2 mx-auto max-w-[calc(100%-8px)]">
-                        <div className = "grid grid-cols-2 min-w-full">
-                            <div className = "grid grid-cols-7 gap-8">
-                                <button onClick={() => formatText('bold')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><BoldIcon className="w-4 h-4"/></button>
-                                <button onClick={() => formatText('italic')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><ItalicsIcon className="w-4 h-4"/></button>
-                                <button onClick={() => formatText('underline')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><UnderlineIcon className="w-4 h-4"/></button>
-                                <button onClick={() => formatText('strikeThrough')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><StrikeThroughIcon className="w-4 h-4"/></button>
-                                <button onClick={() => formatText('insertUnorderedList')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><BulletIcon className="w-4 h-4"/></button>
-                                <button onClick={() => formatText('insertHorizontalRule')} className="flex justify-center items-center min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><DividerIcon className="w-4 h-4"/></button>
-                            </div>
-                            <div className="flex justify-end items-center w-full">
-                                <div className = "flex justify-center align-middle min-w-6 min-h-6 hover:bg-gray-400 rounded-sm"><p>//</p></div>
-                            </div>
+                        <div className = "grid grid-cols-6 min-w-full">
+                                <button onClick={() => formatText('bold')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><BoldIcon className="w-4 h-4"/></button>
+                                <button onClick={() => formatText('italic')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><ItalicsIcon className="w-4 h-4"/></button>
+                                <button onClick={() => formatText('underline')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><UnderlineIcon className="w-4 h-4"/></button>
+                                <button onClick={() => formatText('strikeThrough')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><StrikeThroughIcon className="w-4 h-4"/></button>
+                                <button onClick={() => formatText('insertUnorderedList')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><BulletIcon className="w-4 h-4"/></button>
+                                <button onClick={() => formatText('insertHorizontalRule')} className="flex justify-center items-center min-w-6 min-h-6 fill-gray-400 hover:fill-black rounded-sm"><DividerIcon className="w-4 h-4"/></button>
                         </div>
                     </div>
                 </div>
