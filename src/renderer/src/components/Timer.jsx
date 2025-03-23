@@ -86,37 +86,45 @@ function Timer({ }) {
                 </span>
             </div>
 
-            {/* Timer */}
-            <div className="flex justify-center w-full">
-              <div className="grid grid-flow-col auto-cols-max items-center gap-1.5 p-2">
-                <div className="flex space-x-2 items-center text-white text-5xl">
-                    {editing ? (
-                    <input
-                        type="number"
-                        value={minutes}
-                        onChange={handleTimeChange}
-                        onBlur={handleBlur}
-                        autoFocus
-                        className="w-12 text-center bg-white border rounded-md"
-                        min="1"
-                        max="99"
-                    />
-                    ) : (
-                    <span onClick={handleTimeClick} className="cursor-pointer">
-                        {String(minutes).padStart(2, "0")}
-                    </span>
-                    )}
-                    <span>:</span>
-                    <span>{String(seconds).padStart(2, "0")}</span>
-                    <span className="text-[#BCBFD4] text-3xl"  style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
-                    /&nbsp;{String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
-                    </span>
-                </div>
-                <div className="flex justify-center w-full text-white transition-all duration-200 hover:bg-black/20 rounded-md hover:scale-105" onClick={skipPhase}>
-                  <SkipIcon className = "ml-1 w-6 h-6 fill-white"/> <SkipIcon className = "-ml-3 w-6 h-6 fill-white"/>
-                </div>
+           {/* Timer Container */}
+          <div className="flex w-full items-center relative">
+            {/* Centered Timer Content */}
+            <div className="flex-1 flex justify-center ml-12">
+              <div className="flex space-x-2 items-center text-white text-6xl" style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
+                {editing ? (
+                  <input
+                    type="number"                              
+                    value={minutes}
+                    onChange={handleTimeChange}
+                    onBlur={handleBlur}
+                    autoFocus
+                    className="w-12 text-center bg-white border rounded-md"
+                    min="1"
+                    max="99"
+                  />
+                ) : (
+                  <span onClick={handleTimeClick} className="cursor-pointer">
+                    {String(minutes).padStart(2, "0")}
+                  </span>
+                )}
+                <span>:</span>
+                <span>{String(seconds).padStart(2, "0")}</span>
+                <span className="text-[#BCBFD4] text-3xl" style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
+                  / {String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
+                </span>
               </div>
             </div>
+
+            {/* Right-aligned Skip Button */}
+            <div 
+              className="ml-auto pr-4 cursor-pointer"
+            >
+              <div onClick={skipPhase} className="flex justify-center align-middle items-center transition-all duration-200 hover:bg-black/20 rounded-md hover:scale-105">
+                <SkipIcon className="w-6 h-6 fill-white" />
+                <SkipIcon className="w-6 h-6 fill-white -ml-3" />
+              </div>
+            </div>
+          </div>
 
             {/* Bottom Buttons */}
             <div className="flex justify-center w-full">
