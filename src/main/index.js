@@ -19,6 +19,8 @@ function createWindow() {
     autoHideMenuBar: true,
     titleBarStyle: "hidden",
     alwaysOnTop: true,
+    frame: false,
+    thickFrame: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
