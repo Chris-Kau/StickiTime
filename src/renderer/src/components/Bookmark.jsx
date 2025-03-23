@@ -10,7 +10,7 @@ function Bookmark({id, name, hyperlink, onDelete}) {
     }, [hyperlink]);
 
     return (
-        <div className="flex items-center gap-2 p-2 hover:bg-gray-100">
+        <div className="flex items-center gap-2 p-2 bg-white hover:bg-gray-100">
             <img 
                 src={icon}
                 alt="favicon"
