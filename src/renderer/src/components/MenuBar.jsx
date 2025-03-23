@@ -8,6 +8,7 @@ import { useState } from 'react';
 function MenuBar() {
     const [bookmarksWindowState, setBookmarksWindowState] = useState("open")
     const [stickyFolderWindowState, setStickyFolderWindowState] = useState("open")
+    const [mainState, setMainState] = useState("close")
     const openTimer = () => window.electron.ipcRenderer.send('open-timer')
     const openStickyNote = () => window.electron.ipcRenderer.send('open-sticky-note')
     const openBookmarks = () => {
@@ -25,6 +26,17 @@ function MenuBar() {
         } else {
             setStickyFolderWindowState("open")
         }
+    }
+
+    const openMain = () =>  {
+        window.electron.ipcRenderer.send('close-open-window', mainState, "mainWindow")
+        if (mainState == "open") {
+            setMainState("close")
+        } else {
+            setMainState("open")
+        }
+        window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
+        window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
     }
 
 

@@ -10,12 +10,12 @@ let addBookmarkWindow;
 let screenSize;
 let stickyNoteWindow;
 let stickyFolderWindow;
-
+let mainWindow;
 
 
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
     // width: 800,
     height: 70,
