@@ -28,8 +28,3 @@ input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
-/* Removes arrows in Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}

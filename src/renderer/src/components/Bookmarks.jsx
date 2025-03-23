@@ -24,11 +24,11 @@ function Bookmarks() {
     }
 
     return (
-        <div className = "flex bg-[#D9D9D9] w-screen h-screen justify-center align-middle items-center p-1">
-            <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5] p-[2px]">
+        <div className = "flex bg-[#EFBFA7] w-screen h-screen justify-center align-middle items-center p-1">
+            <div className="flex flex-col min-w-screen max-w-[100% - 10px] h-full min-h-screen max-h-[100% - 4px] bg-[#EFBFA7] ">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex-1 overflow-y-auto p-2 space-y-2"
+                    className="flex-1 overflow-y-hidden p-2 space-y-1"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                     {/* Dynamic Bookmarks */}
@@ -44,7 +44,7 @@ function Bookmarks() {
                 </div>
 
                 {/* Sticky Add Button */}
-                <div className="sticky bottom-0 p-3 max-h-5 bg-[#D9D9D9]">
+                <div className="sticky bottom-0 p-5 max-h-5 h-full bg-[#EFBFA7]">
                     <button
                         className=" flex items-center justify-center align-middle text-center w-full h-full text-gray-500 hover:text-black"
                         onClick={openAddBookmark}

@@ -31,7 +31,7 @@ function Bookmark({id, name, hyperlink, onDelete}) {
             <button 
                 onClick={() => {onDelete(id)}}
                 className="justify-items-end text-red-500 hover:text-red-700p">
-                <TrashIcon className="w-4 h-4 fill-red-400 transition-all duration-[25ms hover:scale-[120%]"/>
+                <TrashIcon className="w-4 h-4 fill-[#EFBFA7] transition-all duration-[25ms hover:scale-[120%]"/>
             </button>
         </div>
     )
