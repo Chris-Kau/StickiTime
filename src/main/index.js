@@ -137,7 +137,7 @@ app.whenReady().then(() => {
         }
       });
 
-      bookmarksWindow.setPosition(screenSize.width / 2 - 10, 50)
+      bookmarksWindow.setPosition(screenSize.width / 2 - 10, 71)
       bookmarksWindow.on('ready-to-show', () => {
         // bookmarksWindow.show()
         bookmarksWindow.hide()
