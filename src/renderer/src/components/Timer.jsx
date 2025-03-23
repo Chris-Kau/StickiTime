@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import TitleBar from './TitleBar';
-
+import PauseIcon from '../../../../resources/icons/regular/pause.svg?react';
+import PlayIcon from '../../../../resources/icons/regular/play.svg?react';
+import RestartIcon from '../../../../resources/icons/regular/refresh.svg?react';
+import SkipIcon from '../../../../resources/icons/solid/angle-right-solid.svg?react';
 function Timer({ }) {
 
     const [workMinutes, setWorkMinutes] = useState(25);
@@ -71,62 +74,84 @@ function Timer({ }) {
 
 
     return (
-      <div className="overflow-hidden overflow-y-hidden">
+      <div className="flex flex-col bg-[#454A68] p-2 -mt-0.5 h-screen">
         <TitleBar/>
-        <div className=" flex flex-col justify-center items-center bg-gray-100 rounded-lg shadow-md min-w-screen min-h-[calc(screen - 10%)] ">
-        <div className="grid grid-rows-3">
-          {/* Work Phase */}
-          <div className="flex justify-center align-middle items-center space-x-2 text-4xl ">
-              <span>{isWorkPhase ? "Work Time!" : "Break Time!"}</span>
-          </div>
 
-          {/* Timer */}
-          <div className="flex justify-center w-full  text-4xl">
-            <div className="grid grid-flow-col auto-cols-max items-center gap-1.5 p-2">
-              <div className="flex space-x-2 items-center">
-                  {editing ? (
-                  <input
-                      type="number"
-                      value={minutes}
-                      onChange={handleTimeChange}
-                      onBlur={handleBlur}
-                      autoFocus
-                      className="w-12 text-center bg-white border rounded-md"
-                      min="1"
-                      max="99"
-                  />
-                  ) : (
-                  <span onClick={handleTimeClick} className="cursor-pointer">
-                      {String(minutes).padStart(2, "0")}
-                  </span>
-                  )}
-                  <span>:</span>
-                  <span>{String(seconds).padStart(2, "0")}</span>
-                  <span className="text-gray-500">
-                  / {String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
-                  </span>
-              </div>
-              <div className="flex justify-center w-full" onClick={skipPhase}>
-                <p>{">>"}</p>
+        <div className="flex  justify-center items-center shadow-md w-full mx-auto bg-blue-100 p-1">
+          <div className="max-h-screen w-full max-w-screen space-y-1 bg-[url(../../../../resources/citybackdrop.jpg)] bg-cover bg-center">
+            {/* Work Phase */}
+            <div className="flex justify-center align-middle items-center space-x-2 text-4xl text-white mt-5">
+            <span style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
+                  {isWorkPhase ? "Work Time!" : "Break Time!"}
+                </span>
+            </div>
+
+            {/* Timer */}
+            <div className="flex justify-center w-full">
+              <div className="grid grid-flow-col auto-cols-max items-center gap-1.5 p-2">
+                <div className="flex space-x-2 items-center text-white text-5xl">
+                    {editing ? (
+                    <input
+                        type="number"
+                        value={minutes}
+                        onChange={handleTimeChange}
+                        onBlur={handleBlur}
+                        autoFocus
+                        className="w-12 text-center bg-white border rounded-md"
+                        min="1"
+                        max="99"
+                    />
+                    ) : (
+                    <span onClick={handleTimeClick} className="cursor-pointer">
+                        {String(minutes).padStart(2, "0")}
+                    </span>
+                    )}
+                    <span>:</span>
+                    <span>{String(seconds).padStart(2, "0")}</span>
+                    <span className="text-[#BCBFD4] text-3xl"  style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
+                    /&nbsp;{String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
+                    </span>
+                </div>
+                <div className="flex justify-center w-full text-white transition-all duration-200 hover:bg-black/20 rounded-md hover:scale-105" onClick={skipPhase}>
+                  <SkipIcon className = "ml-1 w-6 h-6 fill-white"/> <SkipIcon className = "-ml-3 w-6 h-6 fill-white"/>
+                </div>
               </div>
             </div>
+
+            {/* Bottom Buttons */}
+            <div className="flex justify-center w-full">
+              <div className="grid grid-cols-2 gap-3 w-full max-w-[300px] text-4xl mb-5">
+                {/* Reset Button */}
+                <button
+                  onClick={resetTimer}
+                  className="text-white w-full min-w-[120px] flex justify-center items-center gap-2  transition-all duration-200 hover:scale-105 hover:bg-black/20 rounded-md"
+                >
+                  <RestartIcon className="w-6 h-6 fill-white" />
+                  <span style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>Reset</span>
+                </button>
+
+                {/* Start/Stop Button */}
+                <button
+                  onClick={() => setIsRunning(!isRunning)}
+                  className="text-white w-full min-w-[120px] flex justify-center items-center gap-2 transition-all duration-200 hover:scale-105 hover:bg-black/20 rounded-md"
+                >
+                  {isRunning ? (
+                    <>
+                      <PauseIcon className="w-6 h-6 fill-white" />
+                      <span style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>Stop</span>
+                    </>
+                  ) : (
+                    <>
+                      <PlayIcon className="w-6 h-6 fill-white" />
+                      <span style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>Start</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+              
+            
           </div>
-
-          {/* Bottom Buttons */}
-          <div className="grid grid-cols-2 gap-3 w-full max-w-[300px]  text-2xl">
-              <button
-                onClick={resetTimer}
-                className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 w-full min-w-[120px]">
-                Reset
-              </button>
-
-              <button
-                onClick={() => setIsRunning(!isRunning)}
-                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 w-full min-w-[120px]">
-                {isRunning ? "Pause" : "Start"}
-              </button>
-        </div>
-        </div>
         </div>
       </div>
      
