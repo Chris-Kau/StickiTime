@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-
+import TitleBar from './TitleBar';
 
 function Timer({ }) {
 
@@ -72,6 +72,7 @@ function Timer({ }) {
 
     return (
       <div className="p-4 flex flex-col justify-center items-center space-y-4 bg-gray-100 rounded-lg shadow-md min-w-screen min-h-screen ">
+        <TitleBar/>
 
         <div className="grid grid-rows-3">
           {/* Work Phase */}
