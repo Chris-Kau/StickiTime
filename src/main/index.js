@@ -25,6 +25,7 @@ function createWindow() {
     alwaysOnTop: true,
     frame: false,
     thickFrame: false,
+    resizable: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
@@ -134,6 +135,7 @@ app.whenReady().then(() => {
         scrollbar: false,
         frame: false,
         thickFrame: false,
+        resizable: false,
         webPreferences: {
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
@@ -181,7 +183,7 @@ app.whenReady().then(() => {
         titleBarStyle: "hidden",
         alwaysOnTop: true,
         scrollbar: false,
-
+        resizable: false,
         webPreferences: {
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
@@ -219,6 +221,7 @@ app.whenReady().then(() => {
         scrollbar: false,
         frame: false,
         thickFrame: false,
+        resizable: false,
         webPreferences: {
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
