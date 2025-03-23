@@ -1,9 +1,10 @@
 import { useState } from 'react';
 
-import WindowCloseIcon from '../../../../resources/icons/regular/window-close.svg?react';
-import WindowCloseSolidIcon from '../../../../resources/icons/solid/window-close-solid.svg?react';
+import WindowCloseIcon from '../../../../resources/icons/yay_xm_icons/xx.svg?react';
+import WindowCloseSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse xx.svg?react';
 
-import MinusIcon from '../../../../resources/icons/yay_xm_icons/m.svg?react';
+import MinusIcon from '../../../../resources/icons/yay_xm_icons/mm.svg?react';
+import MinusSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse mm.svg?react';
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
 function TitleBar({hasThumbtack = true}){
@@ -43,7 +44,7 @@ function TitleBar({hasThumbtack = true}){
                     id="not-draggable"  
                     onMouseEnter={() => setIsMinimizeHovered(true)}
                     onMouseLeave={() => setIsMinimizeHovered(false)}>
-                        {isMinimizeHovered ? (<MinusIcon className = "hover:scale-125"/>) : (<MinusIcon className = "hover:scale-125"/>)}
+                        {isMinimizeHovered ? (<MinusSolidIcon className = "hover:scale-115"/>) : (<MinusIcon className = "hover:scale-115"/>)}
                     </div>
 
                     <div
@@ -51,7 +52,7 @@ function TitleBar({hasThumbtack = true}){
                     id="not-draggable"
                     onMouseEnter={() => setIsClosedHovered(true)}
                     onMouseLeave={() => setIsClosedHovered(false)}>
-                        {isClosedHovered ? (<WindowCloseSolidIcon className = "w-4 h-4 hover:scale-125"/>) : (<WindowCloseIcon className = "w-4 h-4 hover:scale-125"/>)}
+                        {isClosedHovered ? (<WindowCloseSolidIcon className = "hover:scale-115"/>) : (<WindowCloseIcon className = "hover:scale-115"/>)}
                     </div>
                 </div>
             </div>
