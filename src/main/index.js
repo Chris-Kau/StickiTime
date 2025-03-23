@@ -140,10 +140,10 @@ app.whenReady().then(() => {
         }
       });
 
+      bookmarksWindow.hide()
       bookmarksWindow.setPosition(screenSize.width / 2 - 10, 71)
       bookmarksWindow.on('ready-to-show', () => {
         // bookmarksWindow.show()
-        bookmarksWindow.hide()
       })
 
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
