@@ -3,6 +3,11 @@ import { useState } from "react";
 
 function Bookmarks() {
     const openAddBookmark = () => window.electron.ipcRenderer.send('open-addBookmark')
+    // const receiverBookmark = () => window.electron.ipcRenderer.receive('receive-bookmark')
+    window.electron.ipcRenderer.on('receive-bookmark', function(event,data){
+        console.log("DATA".concat(' ', data))
+    })
+
 
     const [bookmarks, setBookmarks] = useState([]);
     function addBookmark() {
