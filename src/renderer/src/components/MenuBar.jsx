@@ -51,7 +51,7 @@ function MenuBar() {
                 </div>
 
                 {/* Sticky Notes */}
-                <div onClick = {() => openStickyFolder()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
+                <div onClick = {() => openStickyFolder()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-[#F8EAA6]">
                     <StickyNotesFolderIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
                     <button className="-mt-1 text-[#747474]" >Sticky Notes</button>
                 </div>
