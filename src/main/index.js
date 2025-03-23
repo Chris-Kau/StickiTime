@@ -331,7 +331,7 @@ ipcMain.on("minimize-main", (event, action, window) => {
   if (!win) return;
 
   if (action == 'close') {
-    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -55)
+    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
   } else {
     mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
   }

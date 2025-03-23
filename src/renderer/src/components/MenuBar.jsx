@@ -53,8 +53,9 @@ function MenuBar() {
             <SpriteAnimation/>
         </div>
 
-        <div onClick={openMain} className="flex mt-12">
-            <UpIcon className="w-4 h-4"/>
+        <div onClick={openMain} className="flex justify-center align-middle items-center mt-12">
+            {mainState == "open" ? (<DownIcon className="w-4 h-4 fill-[#747474]"/>) : <UpIcon className="w-4 h-4 fill-[#747474]"/>}
+            
         </div>
 
         <div className = "flex flex-row gap-3 justify-end w-full max-w-[100% - 4px] h-full max-h-[100% - 4px] p-[2px]">
