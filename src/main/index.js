@@ -198,6 +198,13 @@ ipcMain.on('minimize-window', () => {
   }
 });
 
+ipcMain.on('pin-window', () => {
+  const window = BrowserWindow.getFocusedWindow();
+  if (window) {
+      window.setAlwaysOnTop(!window.isAlwaysOnTop());
+  }
+});
+
 ipcMain.on('addingBookMark', function(event, data) {
   console.log(data)
   bookmarksWindow.webContents.send('receive-bookmark', data);

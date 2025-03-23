@@ -1,15 +1,22 @@
 import { useState, useRef, useEffect } from 'react';
 import StrikeThroughIcon from '../../../../resources/icons/regular/strike-through.svg?react';
 import UnderlineIcon from '../../../../resources/icons/regular/Underline.svg?react';
-import BoldIcon from '../../../../resources/icons/regular/Bold.svg?react';
+import BoldIcon from '../../../../resources/icons/solid/bold-solid.svg?react';
 import ItalicsIcon from '../../../../resources/icons/regular/italics.svg?react';
 import WindowCloseIcon from '../../../../resources/icons/regular/window-close.svg?react';
+import WindowCloseSolidIcon from '../../../../resources/icons/solid/window-close-solid.svg?react';
 import BulletIcon from '../../../../resources/icons/regular/bullet-list.svg?react';
 import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
 import MinusIcon from '../../../../resources/icons/regular/minus.svg?react';
+import MinusSolidIcon from '../../../../resources/icons/solid/minus-solid.svg?react';
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
+import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
 function StickyNote(){
     const [content, setContent] = useState('');
+    const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
+    const [isClosedHovered, setIsClosedHovered] = useState(false);
+    const [isWindowPinned, setIsWindowPinned] = useState(false);
+    const [isMinimizeHovered, setIsMinimizeHovered] = useState(false);
     const editorRef = useRef(null);
         const handleInput = () => {
             const html = editorRef.current.innerHTML;
@@ -41,7 +48,14 @@ function StickyNote(){
             editorRef.current.focus();
         }, []);
 
-    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window')
+    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window');
+    const pinWindow = () =>{ 
+        window.electron.ipcRenderer.send('pin-window')
+        if (isWindowPinned)
+            setIsWindowPinned(false)
+        else
+            setIsWindowPinned(true)
+    };
     return(
             <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
                 {/* Top Bar */}
@@ -49,14 +63,34 @@ function StickyNote(){
                     <div className = "grid grid-cols-2 grid-rows-1 min-w-full">
                         <div className = "flex float-left">
                             <div className = "flex justify-center items-center align-middle pt-2 pb-2">
-                                <p id="not-draggable"><ThumbtackIcon className = "w-4 h-4"/></p>    
+                                <div 
+                                    id="not-draggable"
+                                    onClick={()=>pinWindow()}
+                                    onMouseEnter={() => setIsThumbtackHovered(true)}
+                                    onMouseLeave={() => setIsThumbtackHovered(false)}
+                                    >
+                                    {isWindowPinned ? (<ThumbtackSolidIcon className="w-4 h-4 hover:scale-125" />) : (isThumbtackHovered ? ( <ThumbtackSolidIcon className="w-4 h-4 hover:scale-125" />) : (<ThumbtackIcon className="w-4 h-4 hover:scale-125" />))}
+                                </div>
                             </div>
 
                         </div>
                         <div className = "flex justify-end gap-3">
                             <div className = "flex justify-center items-center align-middle pt-2 pb-2 gap-2">
-                                <p onClick = {()=>minimizeWindow()} id="not-draggable"><MinusIcon className = "w-4 h-4"/></p>
-                                <p onClick = {()=>window.close()} id="not-draggable"><WindowCloseIcon className = "w-4 h-4"/></p>
+                                <div 
+                                onClick = {()=>minimizeWindow()} 
+                                id="not-draggable"  
+                                onMouseEnter={() => setIsMinimizeHovered(true)}
+                                onMouseLeave={() => setIsMinimizeHovered(false)}>
+                                    {isMinimizeHovered ? (<MinusSolidIcon className = "w-4 h-4  hover:scale-125"/>) : (<MinusIcon className = "w-4 h-4 hover:scale-125"/>)}
+                                </div>
+
+                                <div
+                                onClick = {()=>window.close()} 
+                                id="not-draggable"
+                                onMouseEnter={() => setIsClosedHovered(true)}
+                                onMouseLeave={() => setIsClosedHovered(false)}>
+                                    {isClosedHovered ? (<WindowCloseSolidIcon className = "w-4 h-4 hover:scale-125"/>) : (<WindowCloseIcon className = "w-4 h-4 hover:scale-125"/>)}
+                                </div>
                             </div>
                         </div>
                     </div>
