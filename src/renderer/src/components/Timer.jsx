@@ -75,14 +75,14 @@ function Timer({ }) {
 
         <div className="grid grid-rows-3">
           {/* Work Phase */}
-          <div className="flex justify-center space-x-2 text-2xl">
+          <div className="flex justify-center align-middle items-center space-x-2 text-4xl ">
               <span>{isWorkPhase ? "Work Time!" : "Break Time!"}</span>
           </div>
 
           {/* Timer */}
-          <div className="flex justify-center w-full">
+          <div className="flex justify-center w-full  text-4xl">
             <div className="grid grid-flow-col auto-cols-max items-center gap-1.5 p-2">
-              <div className="flex space-x-2 text-2xl items-center">
+              <div className="flex space-x-2 items-center">
                   {editing ? (
                   <input
                       type="number"
@@ -105,40 +105,26 @@ function Timer({ }) {
                   / {String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
                   </span>
               </div>
-              <div className="flex justify-center w-full">
+              <div className="flex justify-center w-full" onClick={skipPhase}>
                 <p>{">>"}</p>
               </div>
             </div>
           </div>
-          
-
-
 
           {/* Bottom Buttons */}
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-2 gap-3 w-full max-w-[300px]  text-2xl">
               <button
                 onClick={resetTimer}
-                className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
+                className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600 w-full min-w-[120px]">
                 Reset
               </button>
 
               <button
                 onClick={() => setIsRunning(!isRunning)}
-                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+                className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 w-full min-w-[120px]">
                 {isRunning ? "Pause" : "Start"}
               </button>
-
-              <button
-                onClick={skipPhase}
-                className="px-3 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
-                Skip
-              </button>
-         
         </div>
-
-
-
-
         </div>
       </div>
     );
