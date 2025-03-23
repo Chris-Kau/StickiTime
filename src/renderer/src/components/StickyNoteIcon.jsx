@@ -1,0 +1,3 @@
+function StickyNoteIcon({id, name}) {
+    
+}

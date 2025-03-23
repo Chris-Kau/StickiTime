@@ -6,6 +6,7 @@ import { useState } from 'react';
 
 function MenuBar() {
     const [bookmarksWindowState, setBookmarksWindowState] = useState("open")
+    const [stickyFolderWindowState, setStickyFolderWindowState] = useState("open")
     const openTimer = () => window.electron.ipcRenderer.send('open-timer')
     const openStickyNote = () => window.electron.ipcRenderer.send('open-sticky-note')
     const openBookmarks = () => {
@@ -16,7 +17,14 @@ function MenuBar() {
             setBookmarksWindowState("open")
         }
     }
-
+    const openStickyFolder = () => {
+        window.electron.ipcRenderer.send('close-open-window', stickyFolderWindowState, "stickyFolderWindow")
+        if (stickyFolderWindowState == "open") {
+            setStickyFolderWindowState("close")
+        } else {
+            setStickyFolderWindowState("open")
+        }
+    }
 
 
 
@@ -43,7 +51,7 @@ function MenuBar() {
                 </div>
 
                 {/* Sticky Notes */}
-                <div onClick = {() => openBookmarks()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
+                <div onClick = {() => openStickyFolder()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
                     <StickyNotesFolderIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
                     <button className="-mt-1 text-[#747474]" >Sticky Notes</button>
                 </div>

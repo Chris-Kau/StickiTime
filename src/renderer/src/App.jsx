@@ -3,6 +3,7 @@ import Timer from "./components/Timer";
 import StickyNote from "./components/StickyNote"
 import Bookmarks from "./components/Bookmarks";
 import AddBookMark from "./components/AddBookMark";
+import StickyFolder from "./components/StickyFolder";
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/stickynote" element={<StickyNote/>} />
         <Route path="/bookmarks" element={<Bookmarks/>} />
         <Route path="/addbookmark" element={<AddBookMark/>} />
+        <Route path="/stickynotefolder" element={<StickyFolder/>}></Route>
       </Routes>
     </HashRouter>
 
