@@ -1,6 +1,5 @@
 import Bookmark from "./Bookmark"
 import { useState, useEffect } from "react";
-
 function Bookmarks() {
     const [bookmarks, setBookmarks] = useState([])
 
