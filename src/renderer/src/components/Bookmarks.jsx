@@ -28,7 +28,7 @@ function Bookmarks() {
             <div className="flex flex-col min-w-screen max-w-[100% - 10px] h-full min-h-screen max-h-[100% - 4px] bg-[#EFBFA7] ">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex-1 overflow-y-hidden p-2 space-y-1"
+                    className="flex-1 overflow-y-auto p-2 space-y-1"
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                     {/* Dynamic Bookmarks */}
