@@ -44,13 +44,12 @@ function Bookmarks() {
                 </div>
 
                 {/* Sticky Add Button */}
-                <div className="sticky bottom-0 p-3 bg-[#D9D9D9]">
+                <div className="sticky bottom-0 p-3 max-h-5 bg-[#D9D9D9]">
                     <button
-                        className="border-t-2 w-full flex items-center justify-center p-2 space-x-2 text-gray-500 hover:text-black"
+                        className=" flex items-center justify-center align-middle text-center w-full h-full text-gray-500 hover:text-black"
                         onClick={openAddBookmark}
                     >
-                        <span className="text-xl">+</span>
-                        <span>Add Bookmark</span>
+                        + Add Bookmark
                     </button>
                 </div>
             </div>
