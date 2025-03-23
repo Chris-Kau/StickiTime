@@ -6,15 +6,21 @@ function StickyFolder(id, name) {
 
     window.electron.ipcRenderer.on('receive-stickynote', function(event, data) {
         console.log("data".concat(' ', data))
-        addStickyNote(data.name)
+        addStickyNote(data.name, data.id)
     })
 
-    function addStickyNote(name) {
-        setStickynotes([...stickynotes, { id: crypto.randomUUID(), name: name}]);
+    window.electron.ipcRenderer.on('receive-id', function(e, d) {
+
+    })
+
+    function addStickyNote(name, id) {
+        setStickynotes([...stickynotes, { id: id, name: name}]);
+
     }
     
     function deleteStickyNote(id) {
         setStickynotes(prev => prev.filter(stickynote => stickynote.id !== id));
+        window.electron.ipcRenderer.send("reopen-sticky-note", id)
     }
 
     return (

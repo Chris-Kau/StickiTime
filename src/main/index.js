@@ -114,6 +114,7 @@ app.whenReady().then(() => {
           sandbox: false
         }
       });
+      stickyFolderWindow.webContents.send('receive-id', stickyNoteWindow.id )
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         stickyNoteWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynote`)
       } else {
@@ -276,7 +277,7 @@ ipcMain.on('minimize-window', (event, isStickyNote) => {
       window.minimize();
     else{
       window.hide()
-      stickyFolderWindow.webContents.send('receive-stickynote', "name")
+      stickyFolderWindow.webContents.send('receive-stickynote', {name: "name", id: window.id})
     }
   }
 });
@@ -316,4 +317,10 @@ ipcMain.on('close-open-window', (event, action = 'close', window) => {
   } else {
     win.show()
   }
+})
+
+ipcMain.on('reopen-sticky-note', (event, data) => {
+  console.log(data)
+  const win = BrowserWindow.fromId(data)
+  win.show()
 })
