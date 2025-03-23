@@ -117,23 +117,25 @@ app.whenReady().then(() => {
   })
 
   ipcMain.on('open-bookmarks', () => {
-    const bookmarkWidth = 500
+    const bookmarkHeight = 500
     if(!bookmarksWindow){
       bookmarksWindow = new BrowserWindow({
-        width: bookmarkWidth,
-        height: screenSize.height / 2, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+        width: 200,
+        height: bookmarkHeight, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
         // height: 500,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
         scrollbar: false,
+        frame: false,
+        thickFrame: false,
         webPreferences: {
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
         }
       });
 
-      bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4)
+      bookmarksWindow.setPosition(screenSize.width / 2, 50)
       bookmarksWindow.on('ready-to-show', () => {
         bookmarksWindow.show()
       })

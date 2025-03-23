@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Bookmark({ name, hyperlink, icon_option}) {
+function Bookmark({id, name, hyperlink, onDelete}) {
     const [icon, setIcon] = useState('');
 
     useEffect(() => {
@@ -24,7 +24,12 @@ function Bookmark({ name, hyperlink, icon_option}) {
             >
                 {name}
             </a>
-            <p>X</p>
+            <button 
+                onClick={() => {onDelete(id)}}
+                className="text-red-500 hover:text-red-700"
+            >
+                X
+            </button>
         </div>
     )
 }
