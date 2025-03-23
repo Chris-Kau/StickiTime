@@ -325,3 +325,15 @@ ipcMain.on('reopen-sticky-note', (event, data) => {
   const win = BrowserWindow.fromId(data)
   win.show()
 })
+
+ipcMain.on("minimize-main", (event, action, window) => {
+  const win = mainWindow
+  if (!win) return;
+
+  if (action == 'close') {
+    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -55)
+  } else {
+    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
+  }
+
+})

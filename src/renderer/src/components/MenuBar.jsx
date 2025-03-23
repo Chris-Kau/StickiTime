@@ -2,6 +2,10 @@ import ClockIcon from '../../../../resources/icons/regular/clock.svg?react';
 import StickyNotesFolderIcon from '../../../../resources/icons/regular/folder-open.svg?react';
 import StickyNoteIcon from '../../../../resources/icons/regular/edit.svg?react';
 import BookmarkIcon from '../../../../resources/icons/regular/bookmark.svg?react';
+
+import UpIcon from '../../../../resources/icons/regular/chevron-up.svg?react';
+import DownIcon from '../../../../resources/icons/regular/chevron-down.svg?react';
+
 import SpriteAnimation from './SpriteAnimation';
 import { useState } from 'react';
 
@@ -29,7 +33,7 @@ function MenuBar() {
     }
 
     const openMain = () =>  {
-        window.electron.ipcRenderer.send('close-open-window', mainState, "mainWindow")
+        window.electron.ipcRenderer.send('minimize-main', mainState)
         if (mainState == "open") {
             setMainState("close")
         } else {
@@ -47,6 +51,10 @@ function MenuBar() {
             
         <div className = "flex w-full items-center pl-5">
             <SpriteAnimation/>
+        </div>
+
+        <div onClick={openMain} className="flex mt-12">
+            <UpIcon className="w-4 h-4"/>
         </div>
 
         <div className = "flex flex-row gap-3 justify-end w-full max-w-[100% - 4px] h-full max-h-[100% - 4px] p-[2px]">
