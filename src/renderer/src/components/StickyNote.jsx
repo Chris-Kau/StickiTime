@@ -7,8 +7,18 @@ import BulletIcon from '../../../../resources/icons/regular/bullet-list.svg?reac
 import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
 import TitleBar from './TitleBar';
 function StickyNote(){
+    const stickyNoteColorList = [["#DDC7B9","#F9EEE7"],["#ACBBE4","#E6EDFF"],["#95CDB8","#E5FBF2"],["#F4CED5","#FFF5F7"],["#F8EAA6","#FFFAE4"],["#C9C6E9","#F0EFFF"]]
+    const [currentColorIdx, setCurrentColorIdx] = useState(0)
     const [content, setContent] = useState('');
     const [stickynoteID, setStickynoteID] = useState("")
+    const [stickyNoteColor, setStickyNoteColor] = useState(["#DDC7B9","#F9EEE7"])
+
+    const next_color=()=>{
+        const newIdx = (currentColorIdx + 1) % 6;
+        setCurrentColorIdx(newIdx);  // Update the state
+        setStickyNoteColor(stickyNoteColorList[newIdx]);
+    }
+    
     const editorRef = useRef(null);
         const handleInput = () => {
             const html = editorRef.current.innerHTML;
@@ -41,13 +51,13 @@ function StickyNote(){
         }, []);
 
     return(
-            <div className="grid  grid-rows-[auto_1fr] w-screen h-screen bg-[#DDC7B9] gap-0">
+            <div className="grid  grid-rows-[auto_1fr] w-screen h-screen gap-0" style={{ backgroundColor: stickyNoteColor[0] }}>
                 {/* Top Bar */}
                 <TitleBar isStickyNote={true}/>
 
             {/* //Text Area */}
             <div className="flex w-full min-h-[65%] overflow-x-hidden px-1">
-                    <div className="flex bg-[#F9EEE7] min-h-auto w-full p-2 mx-auto max-w-[calc(100%-8px)]">
+                    <div className="flex min-h-auto w-full p-2 mx-auto max-w-[calc(100%-8px)]" style={{ backgroundColor: stickyNoteColor[1] }}>
                         <div
                         ref={editorRef}
                         className="min-h-full min-w-full outline-none"
@@ -61,7 +71,7 @@ function StickyNote(){
 
             {/* //Footer */}
             <div className="flex justify-between items-center w-full min-h-[10%] mt-1 mb-3 px-1">
-                <div className="flex bg-[#F9EEE7] min-h-full w-full p-2 mx-auto max-w-[calc(100%-8px)]">
+                <div className="flex min-h-full w-full p-2 mx-auto max-w-[calc(100%-8px)]"  style={{ backgroundColor: stickyNoteColor[1] }}>
                   <div className = "grid grid-cols-6">
                     <button onClick={() => formatText('bold')} className="flex justify-center items-center min-w-6 min-h-6 fill-[#747474] hover:fill-black rounded-sm"><BoldIcon className="w-3.5 h-3.5"/></button>
                     <button onClick={() => formatText('italic')} className="flex justify-center items-center min-w-6 min-h-6 fill-[#747474] hover:fill-black rounded-sm"><ItalicsIcon className="w-3.5 h-3.5"/></button>
@@ -73,8 +83,9 @@ function StickyNote(){
 
                   <div className="ml-auto">
                     <button 
-                        onClick={() => console.log('Square Clicked')} 
-                        className="w-6 h-6 bg-[#DDC7B9] border-1 border-[#747474] rounded-sm hover:bg-blue-700">
+                        onClick={()=>next_color()} 
+                        className="w-6 h-6 border-1 border-[#747474] rounded-sm"
+                        style={{ backgroundColor: stickyNoteColor[0] }}>
                     </button>
                   </div>
 
