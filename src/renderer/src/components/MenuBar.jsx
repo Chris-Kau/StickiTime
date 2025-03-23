@@ -15,26 +15,26 @@ function MenuBar() {
 
                 {/* Timer */}
                 <div className = "flex flex-col justify-center items-center  gap-0 max-h-11 transition-all duration-200 hover:bg-black/20" onClick = {() => openTimer()}>
-                    <ClockIcon className = "w-6 h-6 mt-1"/>
-                    <button className="-mt-1">Timer</button>
+                    <ClockIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                    <button className="-mt-1 text-[#747474]">Timer</button>
                 </div>
 
                 {/* New Note */}
                 <div className = "flex flex-col justify-center items-center  gap-0 max-h-11 transition-all duration-200 hover:bg-black/20">
-                    <StickyNoteIcon className = "w-6 h-6 mt-1"/>
-                    <button className="-mt-1" onClick = {() => openStickyNote()}>New Note</button>
+                    <StickyNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                    <button className="-mt-1 text-[#747474]" onClick = {() => openStickyNote()}>New Note</button>
                 </div>
 
                 {/* Sticky Notes */}
                 <div className = "flex flex-col justify-center items-center  gap-0 max-h-11 transition-all duration-200 hover:bg-black/20">
-                    <StickyNotesFolderIcon className = "w-6 h-6 mt-1"/>
-                    <button className="-mt-1" onClick = {() => openBookmarks()}>Sticky Notes</button>
+                    <StickyNotesFolderIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                    <button className="-mt-1 text-[#747474]" onClick = {() => openBookmarks()}>Sticky Notes</button>
                 </div>
 
                 {/* Bookmark */}
                 <div className = "flex flex-col justify-center items-center  gap-0 max-h-11 transition-all duration-200 hover:bg-black/20">
-                    <BookmarkIcon className = "w-6 h-6 mt-1"/>
-                    <button className="-mt-1" onClick = {() => openBookmarks()}>Bookmark</button>
+                    <BookmarkIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                    <button className="-mt-1 text-[#747474]" onClick = {() => openBookmarks()}>Bookmark</button>
                 </div>
 
             </div>

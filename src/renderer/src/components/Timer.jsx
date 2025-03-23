@@ -74,10 +74,10 @@ function Timer({ }) {
 
 
     return (
-      <div className="flex flex-col bg-[#454A68] p-2 -mt-0.5 h-screen">
+      <div className="flex flex-col bg-[#C9C6E9] p-2 -mt-0.5 h-screen">
         <TitleBar/>
 
-        <div className="flex  justify-center items-center shadow-md w-full mx-auto bg-blue-100 p-1">
+        <div className="flex  justify-center items-center shadow-md w-full mx-auto bg-[#747474] p-1">
           <div className="max-h-screen w-full max-w-screen space-y-1 bg-[url(../../../../resources/citybackdrop.jpg)] bg-cover bg-center">
             {/* Work Phase */}
             <div className="flex justify-center align-middle items-center space-x-2 text-4xl text-white mt-5">

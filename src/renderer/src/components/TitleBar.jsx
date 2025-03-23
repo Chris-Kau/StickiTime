@@ -44,7 +44,7 @@ function TitleBar({hasThumbtack = true}){
                     id="not-draggable"  
                     onMouseEnter={() => setIsMinimizeHovered(true)}
                     onMouseLeave={() => setIsMinimizeHovered(false)}>
-                        {isMinimizeHovered ? (<MinusSolidIcon className = "hover:scale-115"/>) : (<MinusIcon className = "hover:scale-115"/>)}
+                        {isMinimizeHovered ? (<MinusSolidIcon className = "hover:scale-115]"/>) : (<MinusIcon className = "hover:scale-115"/>)}
                     </div>
 
                     <div
