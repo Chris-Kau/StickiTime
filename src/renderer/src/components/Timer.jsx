@@ -3,50 +3,123 @@ import { useState, useEffect } from "react";
 
 function Timer({ }) {
 
-    const WORK_DURATION = 25 * 60; // 25 minutes
-    const BREAK_DURATION = 5 * 60; // 5 minutes
+    const [workMinutes, setWorkMinutes] = useState(25);
+    const [breakMinutes, setBreakMinutes] = useState(5);
 
-    const [timeLeft, setTimeLeft] = useState(WORK_DURATION);
+    const [minutes, setMinutes] = useState(workMinutes);
+    const [seconds, setSeconds] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const [onBreak, setOnBreak] = useState(false);
+    const [isWorkPhase, setIsWorkPhase] = useState(true); // Tracks work/break phase
+    const [editing, setEditing] = useState(false);
+
 
     useEffect(() => {
-        if (!isRunning) return;
-
-        const timer = setInterval(() => {
-            setTimeLeft((prev) => {
-            if (prev === 1) {
-                setOnBreak(!onBreak);
-                return onBreak ? WORK_DURATION : BREAK_DURATION;
+        let timer;
+        if (isRunning) {
+          timer = setInterval(() => {
+            if (minutes === 0 && seconds === 0) {
+                setIsWorkPhase((prev) => !prev); // toggle work/break time
+                const newMinutes = isWorkPhase ? workMinutes : breakMinutes;
+                setMinutes(newMinutes);
+                setSeconds(0);
+            } else {
+                if (seconds === 0) {
+                    setMinutes((m) => m - 1);
+                    setSeconds(59)
+                } else {
+                    setSeconds((s) => s - 1);
+                }
             }
-            return prev - 1;
-            });
-        }, 1000);
-
+          }, 1000);
+        }
         return () => clearInterval(timer);
-    }, [isRunning, onBreak]);
+    }, [isRunning, minutes, seconds, isWorkPhase, workMinutes, breakMinutes]);
 
-    const formatTime = (seconds) => {
-        const minutes = Math.floor(seconds / 60);
-        const secs = seconds % 60;
-        return `${minutes}:${secs < 10 ? "0" : ""}${secs}`;
+
+    const skipPhase = () => {
+        setIsWorkPhase((prev) => !prev);
+        setMinutes(isWorkPhase ? breakMinutes : workMinutes);
+        setSeconds(0);
+    };
+
+    const resetTimer = () => {
+        setIsWorkPhase(true);
+        setMinutes(workMinutes);
+        setSeconds(0);
+        setIsRunning(false);
+    };
+
+    const handleTimeClick = () => {
+        setEditing(true);
+    };
+
+    // when user edits the total time
+    const handleTimeChange = (e, type) => { 
+        const value = Math.max(1, Math.min(99, Number(e.target.value) || 0)); // Restrict values between 1-99
+        if (type === "work") {
+          setWorkMinutes(value);
+          if (isWorkPhase) setMinutes(value);
+        } else {
+          setBreakMinutes(value);
+          if (!isWorkPhase) setMinutes(value);
+        }
+    };
+
+    const handleBlur = () => {
+    setEditing(false);
     };
 
 
     return (
-        <div className="flex flex-col items-center justify-center h-screen bg-white text-black">
-          <h1 className="text-3xl font-bold mb-4">{onBreak ? "Break Time!" : "Work Time!"}</h1>
-          <div className="text-6xl font-mono">{formatTime(timeLeft)}</div>
-          <div className="mt-4 space-x-3">
-            <button onClick={() => { setIsRunning(false); setTimeLeft(WORK_DURATION); setOnBreak(false); }} className="px-4 py-2 bg-red-500 rounded-lg">
-              Reset
-            </button>
-            <button onClick={() => setIsRunning(!isRunning)} className="px-4 py-2 bg-blue-500 rounded-lg">
-              {isRunning ? "Pause" : "Start"}
-            </button>
-          </div>
+      <div className="p-4 flex flex-col items-center space-y-4 bg-gray-100 rounded-lg shadow-md w-64">
+        <div className="flex space-x-2 text-2xl font-mono">
+            <span>{isWorkPhase ? "Work Time!" : "Break Time!"}</span>
         </div>
-      );
+
+        <div className="flex space-x-2 text-2xl font-mono">
+            {editing ? (
+            <input
+                type="number"
+                value={minutes}
+                onChange={handleTimeChange}
+                onBlur={handleBlur}
+                autoFocus
+                className="w-12 text-center bg-white border rounded-md"
+                min="1"
+                max="99"
+            />
+            ) : (
+            <span onClick={handleTimeClick} className="cursor-pointer">
+                {String(minutes).padStart(2, "0")}
+            </span>
+            )}
+            <span>:</span>
+            <span>{String(seconds).padStart(2, "0")}</span>
+            <span className="text-gray-500">
+            / {String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
+            </span>
+        </div>
+
+        <div className="flex space-x-3">
+          <button
+            onClick={resetTimer}
+            className="px-4 py-2 text-white bg-red-500 rounded-md hover:bg-red-600">
+            Reset
+          </button>
+          <button
+            onClick={() => setIsRunning(!isRunning)}
+            className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+            {isRunning ? "Pause" : "Start"}
+          </button>
+
+          <button
+            onClick={skipPhase}
+            className="px-3 py-2 text-white bg-yellow-500 rounded-md hover:bg-yellow-600">
+            Skip
+          </button>
+        </div>
+      </div>
+    );
 
 }
 

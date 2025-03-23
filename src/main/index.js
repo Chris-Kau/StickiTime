@@ -11,7 +11,8 @@ let stickyNoteWindow;
 function createWindow() {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: screenSize.width / 2,
+    // width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
+    width: 800,
     height: 50,
     show: false,
     autoHideMenuBar: true,
@@ -25,7 +26,8 @@ function createWindow() {
   })
 
   mainWindow.on('ready-to-show', () => {
-    mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0)
+    // mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
+    mainWindow.setPosition(500, 0)
     mainWindow.show()
   })
 
@@ -43,11 +45,13 @@ function createWindow() {
   }
 }
 
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  screenSize = screen.getPrimaryDisplay().workAreaSize
+  screenSize = screen.getPrimaryDisplay().size // or ?????????????????????????
+
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
@@ -62,8 +66,8 @@ app.whenReady().then(() => {
   ipcMain.on('open-timer', () => {
     if(!timerWindow){
       timerWindow = new BrowserWindow({
-        width: 500,
-        height: 500,
+        width: 350,
+        height: 300,
       });
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
@@ -104,7 +108,8 @@ app.whenReady().then(() => {
     if(!bookmarksWindow){
       bookmarksWindow = new BrowserWindow({
         width: bookmarkWidth,
-        height: screenSize.height / 2,
+        // height: screenSize.height / 2, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+        height: 500,
         autoHideMenuBar: true,
         titleBarStyle: "hidden",
         alwaysOnTop: true,
@@ -117,7 +122,8 @@ app.whenReady().then(() => {
       });
 
       bookmarksWindow.on('ready-to-show', () => {
-        bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4)
+        // bookmarksWindow.setPosition(screenSize.width - bookmarkWidth, screenSize.height/2 - screenSize.height / 4) // AAAHHHHHHHHHHH
+        bookmarksWindow.setPosition(2000 - bookmarkWidth, 1000/2 - 1000 / 4)
         bookmarksWindow.show()
       })
 
