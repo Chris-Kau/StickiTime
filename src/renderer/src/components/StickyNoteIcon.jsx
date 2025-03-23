@@ -1,7 +1,8 @@
+import Icon from '../../../../resources/icons/regular/receipt.svg?react';
 function StickyNoteIcon({id, name, onDelete}) {
     return (
-        <div className="grid grid-cols-2 gap-2 p-2 bg-[#FFFAE4] hover:bg-gray-100">
-            <button onClick={() => {onDelete(id)}}> {name} </button>
+        <div onClick={() => {onDelete(id)}} className="flex min-w-[100%] justify-center mx-auto align-middle items-center hover:bg-gray-100/30 rounded-sm">
+            <Icon/>
         </div>
     )
 }
