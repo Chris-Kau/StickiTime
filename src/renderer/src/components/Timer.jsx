@@ -57,20 +57,26 @@ function Timer({ }) {
     };
 
     // when user edits the total time
-    const handleTimeChange = (e, type) => { 
-        const value = Math.max(1, Math.min(99, Number(e.target.value) || 0)); // Restrict values between 1-99
-        if (type === "work") {
-          setWorkMinutes(value);
-          if (isWorkPhase) setMinutes(value);
-        } else {
-          setBreakMinutes(value);
-          if (!isWorkPhase) setMinutes(value);
-        }
-    };
+    const handleTimeChange = (e) => {
+      setMinutes(e.target.value); // Allow full user input
+  };
+
+
+
 
     const handleBlur = () => {
-    setEditing(false);
-    };
+      let value = Number(minutes);
+      if (isNaN(value) || value < 1) value = 1;
+      if (value > 99) value = 99;
+
+      setMinutes(value);
+      if (isWorkPhase) {
+          setWorkMinutes(value);
+      } else {
+          setBreakMinutes(value);
+      }
+      setEditing(false);
+  };
 
 
     return (
@@ -91,25 +97,32 @@ function Timer({ }) {
             {/* Centered Timer Content */}
             <div className="flex-1 flex justify-center ml-12">
               <div className="flex space-x-2 items-center text-white text-6xl" style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
-                {editing ? (
-                  <input
-                    type="number"                              
+              {editing ? (
+                <input
+                    type="number"
+                    enterKeyHint="false"
                     value={minutes}
                     onChange={handleTimeChange}
                     onBlur={handleBlur}
                     autoFocus
-                    className="w-12 text-center bg-white border rounded-md"
+                    className="w-16 text-center text-white bg-transparent border-none outline-none overflow-hidden appearance-none"
                     min="1"
                     max="99"
-                  />
+                    style={{
+                      WebkitAppearance: "none", // Removes arrows in Chrome/Safari
+                  }}
+                />
                 ) : (
-                  <span onClick={handleTimeClick} className="cursor-pointer">
-                    {String(minutes).padStart(2, "0")}
-                  </span>
+                    <span onClick={()=> {
+                      handleTimeClick()
+                      setEditing(true)
+                    }} className="cursor-pointer">
+                        {String(minutes).padStart(2, "0")}
+                    </span>
                 )}
                 <span>:</span>
                 <span>{String(seconds).padStart(2, "0")}</span>
-                <span className="text-[#BCBFD4] text-3xl" style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
+                <span className="text-[#BCBFD4] text-3xl bg-transparent " style={{ textShadow: "1px 4px 10px rgba(0, 0, 0, 0.8)" }}>
                   / {String(isWorkPhase ? workMinutes : breakMinutes).padStart(2, "0")}:00
                 </span>
               </div>
