@@ -33,7 +33,7 @@ function MenuBar() {
     <div className = "flex bg-[#D9D9D9] w-screen h-screen justify-center p-1">
       <div className = "flex w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5]"> {/* light bg and size */}
             
-        <div className = "w-full bottom-1.5 absolute pl-2">
+        <div className = "flex w-full items-center pl-5">
             <SpriteAnimation/>
         </div>
 
