@@ -8,6 +8,7 @@ import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
 import TitleBar from './TitleBar';
 function StickyNote(){
     const [content, setContent] = useState('');
+    const [stickynoteID, setStickynoteID] = useState(crypto.randomUUID())
     const editorRef = useRef(null);
         const handleInput = () => {
             const html = editorRef.current.innerHTML;

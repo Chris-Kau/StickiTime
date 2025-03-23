@@ -24,35 +24,38 @@ function Bookmarks() {
     }
 
     return (
-        <div className="flex flex-col h-screen bg-[#EFBFA7]">
-            {/* Scrollable Content Area */}
-            <div 
-                className="flex-1 overflow-y-auto p-2 space-y-2"
-                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                >
-                {/* Dynamic Bookmarks */}
-                {bookmarks.map((bookmark) => (
-                <Bookmark
-                    key={bookmark.id}
-                    id={bookmark.id}
-                    name={bookmark.name}
-                    hyperlink={bookmark.hyperlink}
-                    onDelete={deleteBookmark}
-                />
-                ))}
-            </div>
+        <div className = "flex bg-[#D9D9D9] w-screen h-screen justify-center align-middle items-center p-1">
+            <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5] p-[2px]">
+                {/* Scrollable Content Area */}
+                <div 
+                    className="flex-1 overflow-y-auto p-2 space-y-2"
+                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    >
+                    {/* Dynamic Bookmarks */}
+                    {bookmarks.map((bookmark) => (
+                    <Bookmark
+                        key={bookmark.id}
+                        id={bookmark.id}
+                        name={bookmark.name}
+                        hyperlink={bookmark.hyperlink}
+                        onDelete={deleteBookmark}
+                    />
+                    ))}
+                </div>
 
-            {/* Sticky Add Button */}
-            <div className="sticky bottom-0 p-3 bg-[#EFBFA7]">
-                <button
-                    className="border-t-2 w-full flex items-center justify-center p-2 space-x-2 text-gray-500 hover:text-white"
-                    onClick={openAddBookmark}
-                >
-                    <span className="text-xl">+</span>
-                    <span>Add Bookmark</span>
-                </button>
+                {/* Sticky Add Button */}
+                <div className="sticky bottom-0 p-3 bg-[#D9D9D9]">
+                    <button
+                        className="border-t-2 w-full flex items-center justify-center p-2 space-x-2 text-gray-500 hover:text-black"
+                        onClick={openAddBookmark}
+                    >
+                        <span className="text-xl">+</span>
+                        <span>Add Bookmark</span>
+                    </button>
+                </div>
             </div>
         </div>
+       
     )
 }
 

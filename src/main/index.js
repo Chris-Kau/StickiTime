@@ -8,6 +8,7 @@ let bookmarksWindow;
 let addBookmarkWindow;
 let screenSize;
 let stickyNoteWindow;
+let stickyFolderWindow;
 
 
 
@@ -106,7 +107,7 @@ app.whenReady().then(() => {
         maxHeight: 450,
         minWidth: 200,
         minHeight: 200,
-
+        
         webPreferences:{
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
@@ -137,7 +138,7 @@ app.whenReady().then(() => {
         }
       });
 
-      bookmarksWindow.setPosition(screenSize.width / 2 - 10, 50)
+      bookmarksWindow.setPosition(screenSize.width / 2 - 10, 71)
       bookmarksWindow.on('ready-to-show', () => {
         // bookmarksWindow.show()
         bookmarksWindow.hide()
@@ -203,6 +204,46 @@ app.whenReady().then(() => {
       addBookmarkWindow.focus()
     }
   })
+
+  function openStickyFolder() {
+    if(!stickyFolderWindow){
+      stickyFolderWindow = new BrowserWindow({
+        width: 200,
+        height: 500, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+        // height: 500,
+        autoHideMenuBar: true,
+        titleBarStyle: "hidden",
+        alwaysOnTop: true,
+        scrollbar: false,
+        frame: false,
+        thickFrame: false,
+        webPreferences: {
+          preload: join(__dirname, '../preload/index.js'),
+          sandbox: false
+        }
+      });
+
+      stickyFolderWindow.hide()
+      stickyFolderWindow.setPosition(screenSize.width / 2 + 200, 72)
+      stickyFolderWindow.on('ready-to-show', () => {
+        // stickyFolderWindow.show()
+      })
+
+      if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
+        stickyFolderWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynotefolder`)
+      } else {
+        stickyFolderWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynotefolder`)
+      }
+
+      stickyFolderWindow.on('close', ()=>{
+        stickyFolderWindow = null;
+      })
+    }else{
+      stickyFolderWindow.focus()
+    }
+  
+  }
+  openStickyFolder()
 
   createWindow()
 
