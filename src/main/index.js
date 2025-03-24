@@ -43,6 +43,9 @@ function createWindow() {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
+  mainWindow.on('closed', ()=>{
+    app.quit()
+  })
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -332,7 +335,6 @@ ipcMain.on('reopen-sticky-note', (event, data) => {
 ipcMain.on("minimize-main", (event, action, window) => {
   const win = mainWindow
   if (!win) return;
-
   if (action == 'close') {
     mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
   } else {
