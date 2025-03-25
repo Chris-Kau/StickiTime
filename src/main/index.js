@@ -1,7 +1,6 @@
 import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-const fetch = require('node-fetch')
 import icon from '../../resources/icon.png?asset'
 import stickyNoteHandler from "./StickyNoteHandler.js"
 import bookmarkHandler from "./BookmarkHandler.js"
@@ -22,6 +21,7 @@ function createWindow() {
     frame: false,
     thickFrame: false,
     resizable: false,
+    fullscreenable: false,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),

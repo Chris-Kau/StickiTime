@@ -20,6 +20,7 @@ function BookmarkHandler(){
             frame: false,
             thickFrame: false,
             resizable: false,
+            fullscreenable: false,
             webPreferences: {
               preload: join(__dirname, '../preload/index.js'),
               sandbox: false

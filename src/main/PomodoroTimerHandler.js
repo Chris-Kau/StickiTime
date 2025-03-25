@@ -11,6 +11,7 @@ function Handler(){
           resizable: false,
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
+          fullscreenable: false,
           webPreferences:{
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false
