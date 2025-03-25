@@ -20,6 +20,7 @@ function Navbar() {
         } else {
             setBookmarksWindowState("open")
         }
+
     }
     const openStickyFolder = () => {
         window.electron.ipcRenderer.send('close-open-window', stickyFolderWindowState, "stickyFolderWindow")
@@ -56,41 +57,41 @@ function Navbar() {
         <div className = "flex flex-row gap-3 justify-end w-full max-w-[100% - 4px] h-full max-h-[100% - 4px] p-[2px]">
 
             {/* Bookmark */}
-            <div 
-                onClick={() => openBookmarks()} 
-                className={`flex flex-col justify-center items-center gap-0 max-h-20 transition-all duration-200 ${
+            <div onClick={() => openBookmarks()} 
+                className={`flex flex-col justify-center items-center gap-0 max-h-20 transition-all duration-200 w-15 h-15 ${
                     bookmarksWindowState == "open" 
                     ? "hover:bg-[#EFBFA7]" 
                     : "bg-[#EFBFA7]"
                 }`}
                 >
                 <BookmarkIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
-                <button className="-mt-1 text-[#747474]">Bookmarks</button>
+                <button className=" text-[#747474]">Bookmarks</button>
             </div>
             
             {/* Timer */}
-            <div onClick = {() => openTimer()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
+            <div onClick = {() => openTimer()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20 w-15 h-15">
                 <ClockIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
-                <button className="-mt-1 text-[#747474]">Timer</button>
+                <button className=" text-[#747474]">Timer</button>
             </div>
 
             {/* New Note */}
-            <div onClick = {() => openStickyNote()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
+            <div 
+                onClick = {() => openStickyNote()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20 w-15 h-15">
                 <StickyNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
-                <button className="-mt-1 text-[#747474]" >New Note</button>
+                <button className=" text-[#747474]" >+ Sticky</button>
             </div>
 
             {/* Sticky Notes */}
             <div 
                 onClick={() => openStickyFolder()} 
-                className={`flex flex-col justify-center items-center gap-0 max-h-20 transition-all duration-200 ${
+                className={`flex flex-col justify-center items-center gap-0 max-h-20 transition-all duration-200 w-15 h-15 ${
                     stickyFolderWindowState == "open" 
                     ? "hover:bg-[#F8EAA6]" 
                     : "bg-[#F8EAA6]"
                 }`}
                 >
                 <StickyNotesFolderIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
-                <button className="-mt-1 text-[#747474]">Sticky Notes</button>
+                <button className=" text-[#747474]">Stickies</button>
             </div>
         </div>
         
