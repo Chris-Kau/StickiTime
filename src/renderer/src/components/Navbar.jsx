@@ -3,6 +3,9 @@ import StickyNotesFolderIcon from '../../../../resources/icons/regular/folder-op
 import StickyNoteIcon from '../../../../resources/icons/regular/edit.svg?react';
 import BookmarkIcon from '../../../../resources/icons/regular/bookmark.svg?react';
 
+import BmIcon from '../../../../resources/icons/mintcat_icons/bookmark.svg?react';
+import NewNoteIcon from '../../../../resources/icons/mintcat_icons/new_note.svg?react';
+
 import UpIcon from '../../../../resources/icons/regular/chevron-up.svg?react';
 
 import SpriteAnimation from './SpriteAnimation';
@@ -64,7 +67,7 @@ function Navbar() {
                     : "bg-[#EFBFA7]"
                 }`}
                 >
-                <BookmarkIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
+                <BmIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
                 <button className="-mt-1 text-[#747474]">Bookmarks</button>
             </div>
             
@@ -76,7 +79,7 @@ function Navbar() {
 
             {/* New Note */}
             <div onClick = {() => openStickyNote()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20">
-                <StickyNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                <NewNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
                 <button className="-mt-1 text-[#747474]" >New Note</button>
             </div>
 
