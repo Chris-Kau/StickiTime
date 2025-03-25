@@ -28,7 +28,7 @@ function BookmarkHandler(){
           });
       
           bookmarksWindow.hide()
-          bookmarksWindow.setPosition(screenSize.width / 2 - 10, 71)
+          bookmarksWindow.setPosition(screenSize.width / 2 + Math.floor(screenSize.width / 23), 71)
           bookmarksWindow.on('ready-to-show', () => {
             // bookmarksWindow.show()
           })

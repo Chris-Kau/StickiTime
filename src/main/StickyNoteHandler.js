@@ -27,7 +27,7 @@ function LoadStickyNote(){
         stickyFolderWindow.hide()
     
         stickyFolderWindow.on('ready-to-show', () => {
-          stickyFolderWindow.setPosition(screenSize.width / 2 + 296, 72)
+          stickyFolderWindow.setPosition(screenSize.width / 2 + Math.floor(screenSize.width / 4.85), 72)
         })
     
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
