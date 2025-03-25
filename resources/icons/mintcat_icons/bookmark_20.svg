@@ -1,0 +1,17 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="4" y="1" width="12" height="2" fill="#747474"/>
+<rect x="5" y="2" width="17" height="2" transform="rotate(90 5 2)" fill="#747474"/>
+<rect x="17" y="2" width="17" height="2" transform="rotate(90 17 2)" fill="#747474"/>
+<rect x="5" y="3" width="1" height="1" fill="#747474"/>
+<rect x="14" y="3" width="1" height="1" fill="#747474"/>
+<rect x="5" y="15" width="1" height="3" fill="#747474"/>
+<rect x="6" y="14" width="1" height="3" fill="#747474"/>
+<rect x="7" y="13" width="1" height="3" fill="#747474"/>
+<rect width="1" height="3" transform="matrix(-1 0 0 1 15 15)" fill="#747474"/>
+<rect width="1" height="3" transform="matrix(-1 0 0 1 14 14)" fill="#747474"/>
+<rect width="1" height="3" transform="matrix(-1 0 0 1 13 13)" fill="#747474"/>
+<rect x="8" y="12" width="1" height="3" fill="#747474"/>
+<rect x="9" y="12" width="1" height="2" fill="#747474"/>
+<rect x="10" y="12" width="1" height="2" fill="#747474"/>
+<rect x="11" y="12" width="1" height="3" fill="#747474"/>
+</svg>
