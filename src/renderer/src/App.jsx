@@ -4,6 +4,7 @@ import StickyNote from "./components/StickyNote"
 import Bookmarks from "./components/Bookmarks";
 import AddBookMark from "./components/AddBookMark";
 import StickyFolder from "./components/StickyFolder";
+import ClosedMenuBar from "./components/ClosedMenuBar";
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/bookmarks" element={<Bookmarks/>} />
         <Route path="/addbookmark" element={<AddBookMark/>} />
         <Route path="/stickynotefolder" element={<StickyFolder/>}></Route>
+        <Route path="/closedmenubar" element={<ClosedMenuBar/>}></Route>
       </Routes>
     </HashRouter>
 

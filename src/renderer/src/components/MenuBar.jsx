@@ -32,13 +32,8 @@ function MenuBar() {
         }
     }
 
-    const openMain = () =>  {
-        window.electron.ipcRenderer.send('minimize-main', mainState)
-        if (mainState == "open") {
-            setMainState("close")
-        } else {
-            setMainState("open")
-        }
+    const closeMain = () =>  {
+        window.electron.ipcRenderer.send('minimize-main', "close")
         window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
         window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
     }
@@ -47,16 +42,18 @@ function MenuBar() {
 
   return (
     <div className = "flex bg-[#D9D9D9] w-screen h-screen justify-center p-1">
-      <div className = "flex w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5]"> {/* light bg and size */}
-            
+        
+      <div className = "flex w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5]">
+        
+        <div onClick={closeMain} className="absolute bottom-0 left-1/2 -translate-x-1/2 transform pb-2 ">
+                <UpIcon className="w-4 h-4 fill-[#747474]"/>
+        </div>
+
         <div className = "flex w-full items-center pl-5">
             <SpriteAnimation/>
         </div>
 
-        <div onClick={openMain} className="flex justify-center align-middle items-center mt-12">
-            {mainState == "open" ? (<DownIcon className="w-4 h-4 fill-[#747474]"/>) : <UpIcon className="w-4 h-4 fill-[#747474]"/>}
-            
-        </div>
+
 
         <div className = "flex flex-row gap-3 justify-end w-full max-w-[100% - 4px] h-full max-h-[100% - 4px] p-[2px]">
 

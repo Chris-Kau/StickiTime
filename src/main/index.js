@@ -5,6 +5,7 @@ import icon from '../../resources/icon.png?asset'
 import stickyNoteHandler from "./StickyNoteHandler.js"
 import bookmarkHandler from "./BookmarkHandler.js"
 import timerHandler from "./PomodoroTimerHandler.js"
+import closedMenuBarHandler from './ClosedMenuBarHandler.js'
 let screenSize;
 let mainWindow;
 
@@ -76,6 +77,7 @@ app.whenReady().then(() => {
   bookmarkHandler();
   stickyNoteHandler();
   timerHandler();
+  closedMenuBarHandler();
   createWindow();
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -122,12 +124,14 @@ ipcMain.on('close-open-window', (event, action = 'close', window) => {
 })
 
 ipcMain.on("minimize-main", (event, action, window) => {
-  const win = mainWindow
-  if (!win) return;
+  if (!mainWindow) return;
   if (action == 'close') {
-    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
+    // mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
+    mainWindow.hide()
   } else {
-    mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
+    
+    // mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
+    mainWindow.show()
   }
 
 })
