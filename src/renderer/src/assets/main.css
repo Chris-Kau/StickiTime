@@ -22,9 +22,14 @@ ul {
     font-family: "Jersey 10", sans-serif;
 }
 
-/* Removes arrows in Chrome, Safari, Edge */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+[contenteditable][data-placeholder]:empty:before {
+    content: attr(data-placeholder);
+    color: #999;
+    cursor: text;
+  }
