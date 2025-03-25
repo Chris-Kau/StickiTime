@@ -1,4 +1,4 @@
-# stickitime
+# StickiTime
 
 An Electron application with React
 
