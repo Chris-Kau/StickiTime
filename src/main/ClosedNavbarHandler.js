@@ -2,11 +2,11 @@ import { app, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 let screenSize;
-let closedMenuBar
-function ClosedMenuBarHandler(){
-    function openClosedMenuBar() {
-      if(!closedMenuBar){
-        closedMenuBar = new BrowserWindow({
+let closedNavbar
+function closedNavbarHandler(){
+    function openclosedNavbar() {
+      if(!closedNavbar){
+        closedNavbar = new BrowserWindow({
           width: 30,
           height: 30, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
           // height: 500,
@@ -25,31 +25,31 @@ function ClosedMenuBarHandler(){
           }
         });
     
-        closedMenuBar.hide()
-        closedMenuBar.on('ready-to-show', () => {
+        closedNavbar.hide()
+        closedNavbar.on('ready-to-show', () => {
 
-          closedMenuBar.setPosition(screenSize.width/2 - 15, 0)
+          closedNavbar.setPosition(screenSize.width/2 - 15, 0)
         })
     
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-          closedMenuBar.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/closedmenubar`)
+          closedNavbar.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/closednavbar`)
         } else {
-          closedMenuBar.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/closedmenubar`)
+          closedNavbar.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/closednavbar`)
         }
       }
     }
 
     app.whenReady().then(()=>{
       screenSize = screen.getPrimaryDisplay().size
-      openClosedMenuBar()
+      openclosedNavbar()
     })
 
-    ipcMain.on("minimize-main", (event, action, window) => {
-      if (!closedMenuBar) return;
+    ipcMain.on("minimize-navbar", (event, action, window) => {
+      if (!closedNavbar) return;
       if (action == 'close') {
-        closedMenuBar.show()
+        closedNavbar.show()
       } else {
-        closedMenuBar.hide()
+        closedNavbar.hide()
       }
     })
     
@@ -57,4 +57,4 @@ function ClosedMenuBarHandler(){
 
 }
 
-export default ClosedMenuBarHandler;
+export default closedNavbarHandler;

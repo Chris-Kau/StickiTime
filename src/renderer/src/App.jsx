@@ -1,10 +1,10 @@
-import MenuBar from "./components/MenuBar"
+import Navbar from "./components/Navbar"
 import Timer from "./components/Timer";
 import StickyNote from "./components/StickyNote"
 import Bookmarks from "./components/Bookmarks";
 import AddBookMark from "./components/AddBookMark";
 import StickyFolder from "./components/StickyFolder";
-import ClosedMenuBar from "./components/ClosedMenuBar";
+import ClosedNavbar from "./components/ClosedNavBar";
 import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 
 function App() {
@@ -14,13 +14,13 @@ function App() {
     <>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<MenuBar/>} />
+        <Route path="/" element={<Navbar/>} />
         <Route path="/timer" element={<Timer/>} />
         <Route path="/stickynote" element={<StickyNote/>} />
         <Route path="/bookmarks" element={<Bookmarks/>} />
         <Route path="/addbookmark" element={<AddBookMark/>} />
         <Route path="/stickynotefolder" element={<StickyFolder/>}></Route>
-        <Route path="/closedmenubar" element={<ClosedMenuBar/>}></Route>
+        <Route path="/closednavbar" element={<ClosedNavbar/>}></Route>
       </Routes>
     </HashRouter>
 

@@ -5,13 +5,13 @@ import icon from '../../resources/icon.png?asset'
 import stickyNoteHandler from "./StickyNoteHandler.js"
 import bookmarkHandler from "./BookmarkHandler.js"
 import timerHandler from "./PomodoroTimerHandler.js"
-import closedMenuBarHandler from './ClosedMenuBarHandler.js'
+import closedNavbarHandler from './ClosedNavbarHandler.js'
 let screenSize;
-let mainWindow;
+let navbarWindow;
 
 function createWindow() {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  navbarWindow = new BrowserWindow({
     width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
     // width: 800,
     height: 70,
@@ -30,17 +30,17 @@ function createWindow() {
     }
   })
 
-  mainWindow.on('ready-to-show', () => {
-    mainWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
-    // mainWindow.setPosition(500, 0)
-    mainWindow.show()
+  navbarWindow.on('ready-to-show', () => {
+    navbarWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
+    // navbarWindow.setPosition(500, 0)
+    navbarWindow.show()
   })
 
-  mainWindow.webContents.setWindowOpenHandler((details) => {
+  navbarWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-  mainWindow.on('closed', ()=>{
+  navbarWindow.on('closed', ()=>{
     if (process.platform !== 'darwin') {
       console.log(process.platform)
       app.quit()
@@ -50,9 +50,9 @@ function createWindow() {
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
   if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
-    mainWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/`)
+    navbarWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/`)
   } else {
-    mainWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/`)
+    navbarWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/`)
   }
 }
 
@@ -77,7 +77,7 @@ app.whenReady().then(() => {
   bookmarkHandler();
   stickyNoteHandler();
   timerHandler();
-  closedMenuBarHandler();
+  closedNavbarHandler();
   createWindow();
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
@@ -123,15 +123,15 @@ ipcMain.on('close-open-window', (event, action = 'close', window) => {
   }
 })
 
-ipcMain.on("minimize-main", (event, action, window) => {
-  if (!mainWindow) return;
+ipcMain.on("minimize-navbar", (event, action, window) => {
+  if (!navbarWindow) return;
   if (action == 'close') {
-    // mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
-    mainWindow.hide()
+    // navbarWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
+    navbarWindow.hide()
   } else {
     
-    // mainWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
-    mainWindow.show()
+    // navbarWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
+    navbarWindow.show()
   }
 
 })

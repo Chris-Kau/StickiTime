@@ -4,15 +4,13 @@ import StickyNoteIcon from '../../../../resources/icons/regular/edit.svg?react';
 import BookmarkIcon from '../../../../resources/icons/regular/bookmark.svg?react';
 
 import UpIcon from '../../../../resources/icons/regular/chevron-up.svg?react';
-import DownIcon from '../../../../resources/icons/regular/chevron-down.svg?react';
 
 import SpriteAnimation from './SpriteAnimation';
 import { useState } from 'react';
 
-function MenuBar() {
+function Navbar() {
     const [bookmarksWindowState, setBookmarksWindowState] = useState("open")
     const [stickyFolderWindowState, setStickyFolderWindowState] = useState("open")
-    const [mainState, setMainState] = useState("close")
     const openTimer = () => window.electron.ipcRenderer.send('open-timer')
     const openStickyNote = () => window.electron.ipcRenderer.send('open-sticky-note')
     const openBookmarks = () => {
@@ -32,8 +30,8 @@ function MenuBar() {
         }
     }
 
-    const closeMain = () =>  {
-        window.electron.ipcRenderer.send('minimize-main', "close")
+    const closeNavbar = () =>  {
+        window.electron.ipcRenderer.send('minimize-navbar', "close")
         window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
         window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
     }
@@ -45,7 +43,7 @@ function MenuBar() {
         
       <div className = "flex w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#FFFBF5]">
         
-        <div onClick={closeMain} className="absolute bottom-0 left-1/2 -translate-x-1/2 transform pb-2 ">
+        <div onClick={closeNavbar} className="absolute bottom-0 left-1/2 -translate-x-1/2 transform pb-2 ">
                 <UpIcon className="w-4 h-4 fill-[#747474]"/>
         </div>
 
@@ -101,4 +99,4 @@ function MenuBar() {
     )
 }
 
-export default MenuBar;
+export default Navbar;
