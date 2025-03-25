@@ -67,7 +67,7 @@ function Navbar() {
                     : "bg-[#EFBFA7]"
                 }`}
                 >
-                <BookmarkIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
+                <BmIcon className="w-6 h-6 mt-1 fill-[#747474]"/>
                 <button className=" text-[#747474]">Bookmarks</button>
             </div>
             
@@ -80,7 +80,7 @@ function Navbar() {
             {/* New Note */}
             <div 
                 onClick = {() => openStickyNote()} className = "flex flex-col justify-center items-center  gap-0 max-h-20 transition-all duration-200 hover:bg-black/20 w-15 h-15">
-                <StickyNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
+                <NewNoteIcon className = "w-6 h-6 mt-1 fill-[#747474]"/>
                 <button className=" text-[#747474]" >+ Sticky</button>
             </div>
 
