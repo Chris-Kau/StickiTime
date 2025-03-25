@@ -32,9 +32,12 @@ function Navbar() {
     }
 
     const closeNavbar = () =>  {
+        setStickyFolderWindowState("open")
+        setBookmarksWindowState("open")
         window.electron.ipcRenderer.send('minimize-navbar', "close")
         window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
         window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
+
     }
 
 
