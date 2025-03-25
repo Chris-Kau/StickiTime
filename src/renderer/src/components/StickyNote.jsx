@@ -10,7 +10,6 @@ function StickyNote(){
     const stickyNoteColorList = [["#DDC7B9","#F9EEE7"],["#ACBBE4","#E6EDFF"],["#95CDB8","#E5FBF2"],["#F4CED5","#FFF5F7"],["#F8EAA6","#FFFAE4"],["#C9C6E9","#F0EFFF"]]
     const [currentColorIdx, setCurrentColorIdx] = useState(0)
     const [content, setContent] = useState('');
-    const [stickynoteID, setStickynoteID] = useState("")
     const [stickyNoteColor, setStickyNoteColor] = useState(["#DDC7B9","#F9EEE7"])
 
     const next_color=()=>{
