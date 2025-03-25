@@ -1,0 +1,35 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="2" y="3" width="2" height="14" fill="#747474"/>
+<rect x="17" y="16" width="2" height="14" transform="rotate(90 17 16)" fill="#747474"/>
+<rect x="18" y="17" width="2" height="7" transform="rotate(180 18 17)" fill="#747474"/>
+<rect x="3" y="4" width="2" height="9" transform="rotate(-90 3 4)" fill="#747474"/>
+<rect x="4" y="4" width="1" height="1" fill="#747474"/>
+<rect x="4" y="15" width="1" height="1" fill="#747474"/>
+<rect x="15" y="15" width="1" height="1" fill="#747474"/>
+<rect x="17" y="9" width="1" height="1" fill="#747474"/>
+<rect x="12" y="2" width="1" height="1" fill="#747474"/>
+<rect x="7" y="11" width="1" height="3" fill="#747474"/>
+<rect x="10" y="13" width="1" height="3" transform="rotate(90 10 13)" fill="#747474"/>
+<rect x="7" y="10" width="2" height="1" fill="#747474"/>
+<rect x="8" y="9" width="2" height="1" fill="#747474"/>
+<rect x="9" y="8" width="2" height="1" fill="#747474"/>
+<rect x="10" y="7" width="2" height="1" fill="#747474"/>
+<rect x="11" y="6" width="2" height="1" fill="#747474"/>
+<rect x="12" y="5" width="2" height="1" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 12 10)" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 11 11)" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 10 12)" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 15 7)" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 14 8)" fill="#747474"/>
+<rect width="2" height="1" transform="matrix(0 1 1 0 13 9)" fill="#747474"/>
+<rect x="14" y="6" width="1" height="1" fill="#747474"/>
+<rect x="14" y="3" width="2" height="1" fill="#747474"/>
+<rect x="17" y="5" width="1" height="2" fill="#747474"/>
+<rect x="17" y="3" width="1" height="1" fill="#747474"/>
+<rect x="18" y="3" width="1" height="2" fill="#747474"/>
+<rect x="16" y="2" width="2" height="1" fill="#747474"/>
+<rect x="18" y="5" width="1" height="1" fill="#747474"/>
+<rect x="15" y="2" width="1" height="1" fill="#747474"/>
+<rect x="15" y="4" width="1" height="1" fill="#747474"/>
+<rect x="16" y="5" width="1" height="1" fill="#747474"/>
+</svg>
