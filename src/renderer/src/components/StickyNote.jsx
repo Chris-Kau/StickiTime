@@ -59,7 +59,7 @@ function StickyNote(){
                     <div className="flex min-h-auto w-full p-2 mx-auto max-w-[calc(100%-8px)]" style={{ backgroundColor: stickyNoteColor[1] }}>
                         <div
                         ref={editorRef}
-                        className="min-h-full min-w-full outline-none"
+                        className="min-h-full min-w-full outline-none overflow-y-auto"
                         contentEditable 
                         onInput={handleInput}
                         dangerouslySetInnerHTML={{ __html: content }}
