@@ -8,8 +8,8 @@ function LoadStickyNote(){
     function openStickyFolder() {
       if(!stickyFolderWindow){
         stickyFolderWindow = new BrowserWindow({
-          width: 85,
-          height: 500, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+          width: screenSize.width/2,
+          height: 70, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
           // height: 500,
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
@@ -27,7 +27,7 @@ function LoadStickyNote(){
         stickyFolderWindow.hide()
     
         stickyFolderWindow.on('ready-to-show', () => {
-          stickyFolderWindow.setPosition(screenSize.width / 2 + Math.floor(screenSize.width / 4.85), 72)
+          stickyFolderWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 72)
         })
     
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

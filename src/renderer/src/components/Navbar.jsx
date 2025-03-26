@@ -1,7 +1,5 @@
-import ClockIcon from '../../../../resources/icons/regular/clock.svg?react';
-import StickyNotesFolderIcon from '../../../../resources/icons/regular/folder-open.svg?react';
-import StickyNoteIcon from '../../../../resources/icons/regular/edit.svg?react';
-import BookmarkIcon from '../../../../resources/icons/regular/bookmark.svg?react';
+import ClockIcon from '../../../../resources/icons/mintcat_icons/clock_20.svg?react';
+import StickyNotesFolderIcon from '../../../../resources/icons/mintcat_icons/note_stack_20.svg?react';
 
 import BmIcon from '../../../../resources/icons/mintcat_icons/bookmark.svg?react';
 import NewNoteIcon from '../../../../resources/icons/mintcat_icons/new_note.svg?react';

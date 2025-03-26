@@ -28,10 +28,10 @@ function StickyFolder(id, name) {
             <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#F8EAA6] p-[2px]">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex-1 overflow-y-auto p-2 space-y-2"
+                    className="grid grid-cols-12 grid-flow-cols-dense overflow-y-auto space-y-2 "
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
-                    {/* Dynamic Bookmarks */}
+                    {/* Dynamic Sticky */}
                     {stickynotes.map((stickynote) => (
                     <StickyNoteIcon
                         key={stickynote.id}
