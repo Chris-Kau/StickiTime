@@ -28,8 +28,15 @@ function StickyFolder(id, name) {
             <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#F8EAA6] p-[2px]">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex flex-row overflow-x-auto overflow-y-hidden gap-2 "
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    className="flex flex-row min-h-14 overflow-x-auto overflow-y-hidden gap-2"
+                    style={{ 
+                        msOverflowStyle: 'none',
+                        scrollbarWidth: "thin",
+                        scrollbarColor: "#d3c891 transparent"}}
+                    // Makes it so it scrolls horizontally by default
+                    onWheel={(e) => {
+                        e.currentTarget.scrollLeft += e.deltaY / 2; 
+                    }}
                     >
                     {/* Dynamic Sticky */}
                     {stickynotes.map((stickynote) => (
