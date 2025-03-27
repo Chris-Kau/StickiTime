@@ -28,7 +28,7 @@ function StickyFolder(id, name) {
             <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#F8EAA6] p-[2px]">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex flex-wrap overflow-y-auto gap-4 p-2 content-start"
+                    className="flex flex-row overflow-x-auto overflow-y-hidden gap-2 "
                     style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
                     >
                     {/* Dynamic Sticky */}
