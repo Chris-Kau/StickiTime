@@ -24,12 +24,18 @@ function Bookmarks() {
     }
 
     return (
-        <div className = "flex bg-[#EFBFA7] w-screen h-screen justify-center align-middle items-center p-1">
-            <div className="flex flex-col min-w-screen max-w-[100% - 10px] h-full min-h-screen max-h-[100% - 4px] bg-[#EFBFA7] ">
+        <div className = "flex bg-[#debba9] w-screen h-screen justify-center align-middle items-center p-1">
+            <div className="flex flex-col w-full max-w-[100% - 4px] h-full bg-[#FFFBF5] p-[2px] ">
                 {/* Scrollable Content Area */}
                 <div 
-                    className="flex-1 overflow-y-auto p-2 space-y-1"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    className="flex flex-row flex-1 overflow-x-auto overflow-y-hidden  gap-2"
+                    style={{ 
+                        msOverflowStyle: 'none',
+                        scrollbarWidth: "thin",
+                        scrollbarColor: "#cbad9e transparent"}}
+                    onWheel={(e) => {
+                        e.currentTarget.scrollLeft += e.deltaY / 2; 
+                    }}
                     >
                     {/* Dynamic Bookmarks */}
                     {bookmarks.map((bookmark) => (
@@ -43,12 +49,12 @@ function Bookmarks() {
                     ))}
                 </div>
 
-                {/* Sticky Add Button */}
-                <div className="sticky bottom-0 p-5 max-h-5 h-full bg-[#EFBFA7]">
+                {/* Boomark Add Button */}
+                {/* bg-[#EFBFA7] */}
+                <div className="sticky bottom-0 items-center bg-[#EFBFA7]">
                     <button
-                        className=" flex items-center justify-center align-middle text-center w-full h-full text-gray-500 hover:text-black"
-                        onClick={openAddBookmark}
-                    >
+                        className=" w-full text-gray-500 hover:text-black text-center"
+                        onClick={openAddBookmark}>
                         + Add Bookmark
                     </button>
                 </div>

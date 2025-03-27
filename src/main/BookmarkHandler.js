@@ -10,8 +10,8 @@ function BookmarkHandler(){
     function openBookmark() {
         if(!bookmarksWindow){
           bookmarksWindow = new BrowserWindow({
-            width: 200,
-            height: 500, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
+            width: screenSize.width / 2,
+            height: 70, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
             // height: 500,
             autoHideMenuBar: true,
             titleBarStyle: "hidden",
@@ -28,7 +28,7 @@ function BookmarkHandler(){
           });
       
           bookmarksWindow.hide()
-          bookmarksWindow.setPosition(screenSize.width / 2 + Math.floor(screenSize.width / 23), 71)
+          bookmarksWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 71)
           bookmarksWindow.on('ready-to-show', () => {
             // bookmarksWindow.show()
           })

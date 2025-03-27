@@ -11,8 +11,8 @@ function Bookmark({id, name, hyperlink, onDelete}) {
     }, [hyperlink]);
 
     return (
-        <div className="grid grid-cols-2 gap-2 p-2 bg-white hover:bg-gray-100">
-            <div className="flex gap-2">
+        <div className="flex flex-row items-center justify-center max-h-7 gap-5 p-2 bg-white hover:bg-gray-100">
+            <div className="flex gap-2 items-center justify-center">
                 <img 
                     src={icon}
                     alt="favicon"
