@@ -6,13 +6,13 @@ const fetch = require('node-fetch')
 let bookmarksWindow;
 let addBookmarkWindow;
 let screenSize;
+let macMenuBarHeight;
 function BookmarkHandler(){
     function openBookmark() {
         if(!bookmarksWindow){
           bookmarksWindow = new BrowserWindow({
-            width: screenSize.width / 2,
-            height: 70, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
-            // height: 500,
+            width: Math.floor(screenSize.width / 2),
+            height: 70, 
             autoHideMenuBar: true,
             titleBarStyle: "hidden",
             alwaysOnTop: true,
@@ -28,10 +28,13 @@ function BookmarkHandler(){
           });
       
           bookmarksWindow.hide()
-          bookmarksWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 71)
-          bookmarksWindow.on('ready-to-show', () => {
-            // bookmarksWindow.show()
-          })
+          if(process.platform == "darwin"){//checks to see if user is on mac :D
+            bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), (process.platform == "darwin" ? (71 + macMenuBarHeight) : 71))
+
+          } else{
+            bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), 71)
+          }
+
       
           if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
             bookmarksWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/bookmarks`)
@@ -73,7 +76,7 @@ function BookmarkHandler(){
             }
           });
           
-          addBookmarkWindow.setPosition(screenSize.width/2 - screenSize.width/4, screenSize.height/2 - screenSize.height / 4)
+          addBookmarkWindow.setPosition(Math.floor(screenSize.width/2 - screenSize.width/4), Math.floor(screenSize.height/2 - screenSize.height / 4))
           addBookmarkWindow.on('ready-to-show', () => {
             addBookmarkWindow.show()
           })
@@ -109,6 +112,7 @@ function BookmarkHandler(){
       })
     app.whenReady().then(()=>{
         screenSize = screen.getPrimaryDisplay().size
+        macMenuBarHeight = screen.getPrimaryDisplay().workArea.y;
         openBookmark();
   })
 }

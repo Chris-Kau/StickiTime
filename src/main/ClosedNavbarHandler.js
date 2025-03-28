@@ -8,8 +8,7 @@ function closedNavbarHandler(){
       if(!closedNavbar){
         closedNavbar = new BrowserWindow({
           width: 30,
-          height: 30, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
-          // height: 500,
+          height: 30,
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
           alwaysOnTop: true,
@@ -27,8 +26,7 @@ function closedNavbarHandler(){
     
         closedNavbar.hide()
         closedNavbar.on('ready-to-show', () => {
-
-          closedNavbar.setPosition(screenSize.width/2 - 15, 0)
+          closedNavbar.setPosition(Math.floor(screenSize.width/2 - 15), 0)
         })
     
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {

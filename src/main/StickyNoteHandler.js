@@ -4,13 +4,13 @@ import { is } from '@electron-toolkit/utils'
 let stickyNoteWindow;
 let stickyFolderWindow;
 let screenSize;
+let macMenuBarHeight;
 function LoadStickyNote(){
     function openStickyFolder() {
       if(!stickyFolderWindow){
         stickyFolderWindow = new BrowserWindow({
-          width: screenSize.width/2,
-          height: 70, // AAAAAAAAAAAAAHHHHHHHHHHHHHHHHHH
-          // height: 500,
+          width: Math.floor(screenSize.width/2),
+          height: 70,
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
           alwaysOnTop: true,
@@ -27,7 +27,7 @@ function LoadStickyNote(){
         stickyFolderWindow.hide()
     
         stickyFolderWindow.on('ready-to-show', () => {
-          stickyFolderWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 72)
+          stickyFolderWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), (process.platform == "darwin" ? (71 + macMenuBarHeight) : 71))
         })
     
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
@@ -79,6 +79,7 @@ function LoadStickyNote(){
       });
     app.whenReady().then(()=>{
           screenSize = screen.getPrimaryDisplay().size
+          macMenuBarHeight = screen.getPrimaryDisplay().workArea.y;
           openStickyFolder()
     })
 }

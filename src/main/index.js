@@ -12,8 +12,7 @@ let navbarWindow;
 function createWindow() {
   // Create the browser window.
   navbarWindow = new BrowserWindow({
-    width: screenSize.width / 2, // aAAAAAAAAAAAAHHHHHHHHHHH
-    // width: 800,
+    width: Math.floor(screenSize.width / 2), // aAAAAAAAAAAAAHHHHHHHHHHH
     height: 70,
     show: false,
     autoHideMenuBar: true,
@@ -31,8 +30,9 @@ function createWindow() {
   })
 
   navbarWindow.on('ready-to-show', () => {
-    navbarWindow.setPosition(screenSize.width/2 - screenSize.width / 4, 0) // aAAAAAAAAAAAAHHHHHHHHHHH
-    // navbarWindow.setPosition(500, 0)
+    if(process.platform == "darwin") //checks to see if user is on mac :D
+      console.log("MAC!!!!!!!!")
+    navbarWindow.setPosition(Math.floor(screenSize.width/2 - screenSize.width / 4), 0) // aAAAAAAAAAAAAHHHHHHHHHHH
     navbarWindow.show()
   })
 
@@ -62,7 +62,6 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   screenSize = screen.getPrimaryDisplay().size // or ?????????????????????????
-
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
 
