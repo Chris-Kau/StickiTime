@@ -21,6 +21,7 @@ function BookmarkHandler(){
             thickFrame: false,
             resizable: false,
             fullscreenable: false,
+            roundedCorners: false,
             webPreferences: {
               preload: join(__dirname, '../preload/index.js'),
               sandbox: false
@@ -30,7 +31,7 @@ function BookmarkHandler(){
           bookmarksWindow.hide()
           if(process.platform == "darwin"){//checks to see if user is on mac :D
             bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), (process.platform == "darwin" ? (71 + macMenuBarHeight) : 71))
-
+            bookmarksWindow.setWindowButtonVisibility(false);
           } else{
             bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), 71)
           }
@@ -70,12 +71,17 @@ function BookmarkHandler(){
             alwaysOnTop: true,
             scrollbar: false,
             resizable: false,
+            roundedCorners: false,
+            frame: false,
+            thickFrame: false,
             webPreferences: {
               preload: join(__dirname, '../preload/index.js'),
               sandbox: false
             }
           });
-          
+          if(process.platform == "darwin"){
+            bookmarksWindow.setWindowButtonVisibility(false);
+          }
           addBookmarkWindow.setPosition(Math.floor(screenSize.width/2 - screenSize.width/4), Math.floor(screenSize.height/2 - screenSize.height / 4))
           addBookmarkWindow.on('ready-to-show', () => {
             addBookmarkWindow.show()

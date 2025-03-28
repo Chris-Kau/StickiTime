@@ -16,6 +16,7 @@ function LoadStickyNote(){
           alwaysOnTop: true,
           scrollbar: false,
           frame: false,
+          roundedCorners: false,
           thickFrame: false,
           resizable: false,
           fullscreenable: false,
@@ -26,6 +27,9 @@ function LoadStickyNote(){
         });
         stickyFolderWindow.hide()
     
+        if(process.platform == "darwin"){ //hide macOS traffic lights
+          stickyFolderWindow.setWindowButtonVisibility(false);
+        }
         stickyFolderWindow.on('ready-to-show', () => {
           stickyFolderWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), (process.platform == "darwin" ? (71 + macMenuBarHeight) : 71))
         })
@@ -47,12 +51,17 @@ function LoadStickyNote(){
         maxHeight: 450,
         minWidth: 200,
         minHeight: 200,
-        
+        roundedCorners: false,
+        frame: false,
+        thickFrame: false,
         webPreferences:{
           preload: join(__dirname, '../preload/index.js'),
           sandbox: false
         }
       });
+      if(process.platform == "darwin"){ //hide macOS traffic lights
+        stickyNoteWindow.setWindowButtonVisibility(false);
+      }
       stickyFolderWindow.webContents.send('receive-id', stickyNoteWindow.id )
       if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
         stickyNoteWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/stickynote`)

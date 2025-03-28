@@ -17,7 +17,9 @@ function closedNavbarHandler(){
           thickFrame: false,
           resizable: false,
           fullscreenable: false,
+          roundedCorners: false,
           transparent: true,
+          backgroundColor: "#00ffffff",
           webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false
@@ -25,6 +27,9 @@ function closedNavbarHandler(){
         });
     
         closedNavbar.hide()
+        if(process.platform == "darwin"){ //hide macOS traffic lights
+          closedNavbar.setWindowButtonVisibility(false);
+        }
         closedNavbar.on('ready-to-show', () => {
           closedNavbar.setPosition(Math.floor(screenSize.width/2 - 15), 0)
         })

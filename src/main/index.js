@@ -14,24 +14,26 @@ function createWindow() {
   navbarWindow = new BrowserWindow({
     width: Math.floor(screenSize.width / 2), // aAAAAAAAAAAAAHHHHHHHHHHH
     height: 70,
-    show: false,
     autoHideMenuBar: true,
     titleBarStyle: "hidden",
     alwaysOnTop: true,
     frame: false,
     thickFrame: false,
+    roundedCorners: false,
     resizable: false,
     fullscreenable: false,
+    transparent: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
-
+  if(process.platform == "darwin"){ //hide macOS traffic lights
+    navbarWindow.setWindowButtonVisibility(false);
+  }
   navbarWindow.on('ready-to-show', () => {
-    if(process.platform == "darwin") //checks to see if user is on mac :D
-      console.log("MAC!!!!!!!!")
+     //checks to see if user is on mac :D
     navbarWindow.setPosition(Math.floor(screenSize.width/2 - screenSize.width / 4), 0) // aAAAAAAAAAAAAHHHHHHHHHHH
     navbarWindow.show()
   })

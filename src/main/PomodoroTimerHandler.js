@@ -12,11 +12,15 @@ function Handler(){
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
           fullscreenable: false,
+          roundedCorners: false,
           webPreferences:{
             preload: join(__dirname, '../preload/index.js'),
             sandbox: false
           }
         });
+        if(process.platform == "darwin"){ //hide macOS traffic lights
+          timerWindow.setWindowButtonVisibility(false);
+        }
         if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
           timerWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/timer`)
         } else {
