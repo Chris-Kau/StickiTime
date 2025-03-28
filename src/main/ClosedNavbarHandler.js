@@ -7,8 +7,8 @@ function closedNavbarHandler(){
     function openclosedNavbar() {
       if(!closedNavbar){
         closedNavbar = new BrowserWindow({
-          width: 30,
-          height: 30,
+          width: 21,
+          height: 21,
           autoHideMenuBar: true,
           titleBarStyle: "hidden",
           alwaysOnTop: true,
