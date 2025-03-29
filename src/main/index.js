@@ -20,7 +20,7 @@ function createWindow() {
     frame: false,
     thickFrame: false,
     roundedCorners: false,
-    resizable: false,
+    resizable: true,
     fullscreenable: false,
     transparent: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -127,12 +127,8 @@ ipcMain.on('close-open-window', (event, action = 'close', window) => {
 ipcMain.on("minimize-navbar", (event, action, window) => {
   if (!navbarWindow) return;
   if (action == 'close') {
-    // navbarWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, -57)
     navbarWindow.hide()
   } else {
-    
-    // navbarWindow.setPosition(screenSize.width / 2 - screenSize.width / 4, 0)
     navbarWindow.show()
   }
-
 })

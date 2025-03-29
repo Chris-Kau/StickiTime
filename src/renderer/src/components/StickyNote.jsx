@@ -5,7 +5,7 @@ import BoldIcon from '../../../../resources/icons/solid/bold-solid.svg?react';
 import ItalicsIcon from '../../../../resources/icons/regular/italics.svg?react';
 import BulletIcon from '../../../../resources/icons/regular/bullet-list.svg?react';
 import DividerIcon from '../../../../resources/icons/regular/divider.svg?react';
-import TitleBar from './TitleBar';
+import StickyNoteTitleBar from './StickyNoteTitleBar';
 function StickyNote(){
     const stickyNoteColorList = [["#DDC7B9","#F9EEE7"],["#ACBBE4","#E6EDFF"],["#95CDB8","#E5FBF2"],["#F4CED5","#FFF5F7"],["#F8EAA6","#FFFAE4"],["#C9C6E9","#F0EFFF"]]
     const [currentColorIdx, setCurrentColorIdx] = useState(0)
@@ -52,7 +52,7 @@ function StickyNote(){
     return(
             <div className="grid  grid-rows-[auto_1fr] w-screen h-screen gap-0" style={{ backgroundColor: stickyNoteColor[0] }}>
                 {/* Top Bar */}
-                <TitleBar isStickyNote={true}/>
+                <StickyNoteTitleBar/>
 
             {/* //Text Area */}
             <div className="flex w-full min-h-[65%] overflow-x-hidden px-1">

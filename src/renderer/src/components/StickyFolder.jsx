@@ -1,56 +1,45 @@
-import { useState } from "react";
-import StickyNoteIcon from "./StickyNoteIcon"
+import { useState, useEffect } from "react";
+import StickyNoteIcon from "./StickyNoteIcon";
 
-function StickyFolder(id, name) {
-    const [stickynotes, setStickynotes] = useState([])
+function StickyFolder() {
+    const [stickynotes, setStickynotes] = useState([]);
 
-    window.electron.ipcRenderer.on('receive-stickynote', function(event, data) {
-        console.log("data".concat(' ', data))
-        addStickyNote(data.name, data.id)
-    })
+    const handleReopenNote = (id) => {
+        setStickynotes(prev => prev.filter(note => note.id !== id));
+        window.electron.ipcRenderer.send('reopen-sticky-note', id);
+    };
 
-    window.electron.ipcRenderer.on('receive-id', function(e, d) {
+    useEffect(() => {
+        const handleReceiveNotes = (event, data) => {
+            setStickynotes(data);
+        };
 
-    })
+        window.electron.ipcRenderer.on('receive-notes', handleReceiveNotes);
+        window.electron.ipcRenderer.send('getAllNotes');
 
-    function addStickyNote(name, id) {
-        setStickynotes([...stickynotes, { id: id, name: name}]);
-
-    }
-    
-    function deleteStickyNote(id) {
-        setStickynotes(prev => prev.filter(stickynote => stickynote.id !== id));
-        window.electron.ipcRenderer.send("reopen-sticky-note", id)
-    }
+        return () => {
+            window.electron.ipcRenderer.removeListener(
+                'receive-notes', 
+                handleReceiveNotes
+            );
+        };
+    }, []);
 
     return (
         <div className="flex bg-[#F8EAA6] w-screen h-screen justify-center align-middle items-center p-1">
-            <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px]  bg-[#F8EAA6] p-[2px]">
-                {/* Scrollable Content Area */}
-                <div 
-                    className="flex flex-row min-h-14 overflow-x-auto overflow-y-hidden gap-2"
-                    style={{ 
-                        msOverflowStyle: 'none',
-                        scrollbarWidth: "thin",
-                        scrollbarColor: "#d3c891 transparent"}}
-                    // Makes it so it scrolls horizontally by default
-                    onWheel={(e) => {
-                        e.currentTarget.scrollLeft += e.deltaY / 2; 
-                    }}
-                    >
-                    {/* Dynamic Sticky */}
-                    {stickynotes.map((stickynote) => (
-                    <StickyNoteIcon
-                        key={stickynote.id}
-                        id={stickynote.id}
-                        name={stickynote.name}
-                        onDelete={deleteStickyNote}
-                    />
+            <div className="flex flex-col w-full max-w-[100% - 4px] h-full max-h-[100% - 4px] bg-[#F8EAA6] p-[2px]">
+                <div className="flex flex-row min-h-14 overflow-x-auto overflow-y-hidden gap-2">
+                    {stickynotes.map((note) => (
+                        <StickyNoteIcon 
+                            key={note.id}
+                            id={note.id}
+                            onReopen={handleReopenNote}
+                        />
                     ))}
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-export default StickyFolder
+export default StickyFolder;

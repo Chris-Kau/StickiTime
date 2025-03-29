@@ -1,12 +1,13 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
+import StickyNoteManager from './StickyNoteManager';
 let stickyNoteWindow;
 let stickyFolderWindow;
 let screenSize;
 let macMenuBarHeight;
 function LoadStickyNote(){
-    function openStickyFolder() {
+    function createStickyFolder() {
       if(!stickyFolderWindow){
         stickyFolderWindow = new BrowserWindow({
           width: Math.floor(screenSize.width/2),
@@ -18,7 +19,7 @@ function LoadStickyNote(){
           frame: false,
           roundedCorners: false,
           thickFrame: false,
-          resizable: false,
+          resizable: true,
           fullscreenable: false,
           webPreferences: {
             preload: join(__dirname, '../preload/index.js'),
@@ -39,26 +40,16 @@ function LoadStickyNote(){
         } else {
           stickyFolderWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynotefolder`)
         }
+
+        StickyNoteManager.folderWindow = stickyFolderWindow;
       }
     }
-    ipcMain.on('open-sticky-note', () => {
-      stickyNoteWindow = new BrowserWindow({
-        width: 300,
-        height: 300,
-        autoHideMenuBar: true,
-        titleBarStyle: "hidden",
-        maxWidth: 450,
-        maxHeight: 450,
-        minWidth: 200,
-        minHeight: 200,
-        roundedCorners: false,
-        frame: false,
-        thickFrame: false,
-        webPreferences:{
-          preload: join(__dirname, '../preload/index.js'),
-          sandbox: false
-        }
-      });
+
+
+
+    ipcMain.handle('open-sticky-note', () => {
+      stickyNoteWindow = StickyNoteManager.createNote()
+
       if(process.platform == "darwin"){ //hide macOS traffic lights
         stickyNoteWindow.setWindowButtonVisibility(false);
       }
@@ -68,28 +59,33 @@ function LoadStickyNote(){
       } else {
         stickyNoteWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynote`)
       }
-    
     })
-    ipcMain.on('reopen-sticky-note', (event, data) => {
-      console.log(data)
-      const win = BrowserWindow.fromId(data)
-      win.show()
-    })
-    ipcMain.on('minimize-window', (event, isStickyNote) => {
-        const window = BrowserWindow.getFocusedWindow();
-        if (window) {
-          if(!isStickyNote)
-            window.minimize();
-          else{
-            window.hide()
-            stickyFolderWindow.webContents.send('receive-stickynote', {name: "name", id: window.id})
-          }
+
+
+
+    ipcMain.on('reopen-sticky-note', (event, id) => {
+      const note = StickyNoteManager.notes.get(id);
+      if(note) {
+          note.window.show();
+          StickyNoteManager.restoreNote(id);
+      }
+  });
+
+  ipcMain.on('minimize-window', (event, isStickyNote) => {
+    const window = BrowserWindow.getFocusedWindow();
+    if (window && isStickyNote) {
+        const note = StickyNoteManager.notes.get(window.id);
+        if(note) {
+            window.hide();
+            note.minimized = true;
+            StickyNoteManager.updateFolder();
         }
-      });
+    }
+  });
     app.whenReady().then(()=>{
           screenSize = screen.getPrimaryDisplay().size
           macMenuBarHeight = screen.getPrimaryDisplay().workArea.y;
-          openStickyFolder()
+          createStickyFolder()
     })
 }
 

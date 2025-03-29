@@ -13,7 +13,7 @@ function Navbar() {
     const [bookmarksWindowState, setBookmarksWindowState] = useState("open")
     const [stickyFolderWindowState, setStickyFolderWindowState] = useState("open")
     const openTimer = () => window.electron.ipcRenderer.send('open-timer')
-    const openStickyNote = () => window.electron.ipcRenderer.send('open-sticky-note')
+    const openStickyNote = () => window.electron.ipcRenderer.invoke('open-sticky-note')
     const openBookmarks = () => {
         window.electron.ipcRenderer.send("close-open-window", bookmarksWindowState, "bookmarksWindow")
         if (bookmarksWindowState == "open") {
