@@ -34,6 +34,7 @@ function StickyFolder() {
                             key={note.id}
                             id={note.id}
                             name={note.name}
+                            color={note.color}
                             onReopen={handleReopenNote}
                         />
                     ))}

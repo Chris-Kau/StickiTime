@@ -75,6 +75,10 @@ function LoadStickyNote(){
     StickyNoteManager.updateNoteName(id, name);
   });
 
+  ipcMain.on('update-sticky-color', (event, id, color)=>{
+    StickyNoteManager.updateNoteColor(id, color)
+  })
+
   ipcMain.on('minimize-window', (event, isStickyNote) => {
     const window = BrowserWindow.getFocusedWindow();
     if (window && isStickyNote) {

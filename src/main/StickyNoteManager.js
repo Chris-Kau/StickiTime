@@ -42,7 +42,8 @@ class StickyNoteManager{
             id: noteId,
             window: noteWindow,
             minimized: false,
-            name: '',
+            name: "",
+            color: "#DDC7B9",
         });
         noteWindow.on('closed', () => {
             this.notes.delete(noteId);
@@ -59,7 +60,8 @@ class StickyNoteManager{
                 .filter(note => note.minimized)
                 .map(note => ({
                     id: note.id,
-                    name: note.name
+                    name: note.name,
+                    color: note.color,
                 }));
             
             this.folderWindow.webContents.send('receive-notes', minimizedNotes);
@@ -80,6 +82,14 @@ class StickyNoteManager{
             note.name = newName;
             this.updateFolder();
             note.window.webContents.send('update-name', newName);
+        }
+    }
+
+    updateNoteColor(id, newColor){
+        const note = this.notes.get(id);
+        if(note){
+            note.color = newColor;
+            this.updateFolder();
         }
     }
 

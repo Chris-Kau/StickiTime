@@ -11,12 +11,26 @@ function StickyNote(){
     const [currentColorIdx, setCurrentColorIdx] = useState(0)
     const [content, setContent] = useState('');
     const [stickyNoteColor, setStickyNoteColor] = useState(["#DDC7B9","#F9EEE7"])
+    const [windowId, setWindowId] = useState(null);
+
+    useEffect(() => {
+        window.electron.ipcRenderer.invoke('get-window-id').then(id => {
+            setWindowId(id);
+        });
+    }, []);
+
 
     const next_color=()=>{
         const newIdx = (currentColorIdx + 1) % 6;
-        setCurrentColorIdx(newIdx);  // Update the state
+        setCurrentColorIdx(newIdx);
         setStickyNoteColor(stickyNoteColorList[newIdx]);
     }
+
+    useEffect(() => {
+        if (windowId) {
+            window.electron.ipcRenderer.send('update-sticky-color', windowId, stickyNoteColor[0]);
+        }
+    }, [stickyNoteColor, windowId]);
     
     const editorRef = useRef(null);
         const handleInput = () => {
@@ -38,9 +52,9 @@ function StickyNote(){
             }
         };
     
-        const formatText = (command, value = null) => {
+        const formatText = (command) => {
             const selection = saveSelection();
-            document.execCommand(command, false, value);
+            document.execCommand(command, false);
             restoreSelection(selection);
             editorRef.current.focus();
         };
@@ -55,7 +69,7 @@ function StickyNote(){
                 <StickyNoteTitleBar/>
 
             {/* //Text Area */}
-            <div className="flex w-full min-h-[65%] overflow-x-hidden px-1">
+            <div className="flex w-full min-h-[65%] overflow-x-hidden px-1" id="StickyNoteTextArea">
                     <div className="flex min-h-auto w-full p-2 mx-auto max-w-[calc(100%-8px)]" style={{ backgroundColor: stickyNoteColor[1] }}>
                         <div
                         ref={editorRef}
