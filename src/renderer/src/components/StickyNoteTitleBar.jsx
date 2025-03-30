@@ -24,7 +24,7 @@ function StickyNoteTitleBar(){
     }, []);
 
 
-useEffect(() => {
+    useEffect(() => {
         if (windowId) {
             window.electron.ipcRenderer.send('update-sticky-name', windowId, name);
         }
