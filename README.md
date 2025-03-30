@@ -37,6 +37,7 @@ $ npm run build:linux
  Icons provided by: `https://github.com/hackernoon/pixel-icon-library?tab=readme-ov-file`
 
  Jersey 10 Font provided by: `https://fonts.google.com/specimen/Jersey+10`
+ Pixelify Sans Font provided by: `https://fonts.google.com/share?selection.family=Pixelify+Sans:wght@400..700`
 
  Frameworks:
  * `Vite`
