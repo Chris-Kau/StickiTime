@@ -9,12 +9,16 @@ class StickyNoteManager{
         ipcMain.handle('getAllNotes', () => {
             return Array.from(this.notes.values()).map(note => ({
                 id: note.id,
-                props: note.props
             }));
         });
+        ipcMain.handle('get-window-id', (event) => {
+            const win = BrowserWindow.fromWebContents(event.sender);
+            return win.id;
+        });
+
     }
 
-    createNote(initialProps = {}){
+    createNote(){
         const noteWindow = new BrowserWindow({
             width: 300,
             height: 300,
@@ -37,8 +41,8 @@ class StickyNoteManager{
         this.notes.set(noteId, {
             id: noteId,
             window: noteWindow,
-            props: initialProps,
-            minimized: false
+            minimized: false,
+            name: '',
         });
         noteWindow.on('closed', () => {
             this.notes.delete(noteId);
@@ -55,7 +59,7 @@ class StickyNoteManager{
                 .filter(note => note.minimized)
                 .map(note => ({
                     id: note.id,
-                    props: note.props
+                    name: note.name
                 }));
             
             this.folderWindow.webContents.send('receive-notes', minimizedNotes);
@@ -67,6 +71,15 @@ class StickyNoteManager{
         if(note) {
             note.minimized = false;
             this.updateFolder();
+        }
+    }
+
+    updateNoteName(id, newName) {  // Changed parameter name from 'new' to 'newName'
+        const note = this.notes.get(id);
+        if(note) {
+            note.name = newName;
+            this.updateFolder();
+            note.window.webContents.send('update-name', newName);
         }
     }
 

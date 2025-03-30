@@ -33,6 +33,7 @@ function StickyFolder() {
                         <StickyNoteIcon 
                             key={note.id}
                             id={note.id}
+                            name={note.name}
                             onReopen={handleReopenNote}
                         />
                     ))}

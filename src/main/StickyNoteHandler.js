@@ -71,6 +71,10 @@ function LoadStickyNote(){
       }
   });
 
+  ipcMain.on('update-sticky-name', (event, id, name) => {
+    StickyNoteManager.updateNoteName(id, name);
+  });
+
   ipcMain.on('minimize-window', (event, isStickyNote) => {
     const window = BrowserWindow.getFocusedWindow();
     if (window && isStickyNote) {
