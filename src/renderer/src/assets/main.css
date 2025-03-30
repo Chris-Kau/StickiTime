@@ -18,10 +18,20 @@ ul {
     font-style: normal;
 }
 
+@font-face{
+    font-family: "Pixelify Sans";
+    src: url('./fonts/PixelifySans-VariableFont_wght.ttf');
+    font-weight:400;
+    font-style: normal;
+}
+
 :root {
     font-family: "Jersey 10", sans-serif;
 }
 
+#StickyNoteTextArea{
+    font-family: "Pixelify Sans", sans-serif;
+}
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
