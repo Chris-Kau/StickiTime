@@ -3,25 +3,18 @@ import { useState, useEffect } from "react";
 function Bookmarks() {
     const [bookmarks, setBookmarks] = useState([])
 
-    // Animation handler
-    // const handleClose = () => {
-    //     window.electron.ipcRenderer.send('animate-close-window');
-    // };
-
     const openAddBookmark = () => window.electron.ipcRenderer.send('open-addBookmark')
 
-    window.electron.ipcRenderer.on('receive-bookmark', function(event, data) {
-        console.log("data".concat(' ', data))
-        addBookmark(data.name, data.hyperlink)
-    })
+    useEffect(()=>{
+        window.electron.ipcRenderer.invoke('getAllBookmarks').then((e)=>setBookmarks(e));
+        const updateBookmarks = (event, data) => setBookmarks(data);
+        window.electron.ipcRenderer.on('receive-bookmarks', updateBookmarks);
 
-    function addBookmark(name, hyperlink) {
-        setBookmarks([...bookmarks, { id: crypto.randomUUID(), name: name, hyperlink: hyperlink}]);
-    }
+        return () => {
+            window.electron.ipcRenderer.removeListener('receive-bookmarks', updateBookmarks);
+        };
+    }, []);
     
-    function deleteBookmark(id) {
-        setBookmarks(prev => prev.filter(bookmark => bookmark.id !== id));
-    }
 
     return (
         <div className = "flex bg-[#debba9] w-screen h-screen justify-center align-middle items-center p-1">
@@ -40,11 +33,10 @@ function Bookmarks() {
                     {/* Dynamic Bookmarks */}
                     {bookmarks.map((bookmark) => (
                     <Bookmark
-                        key={bookmark.id}
+                        key={bookmark.id} 
                         id={bookmark.id}
                         name={bookmark.name}
                         hyperlink={bookmark.hyperlink}
-                        onDelete={deleteBookmark}
                     />
                     ))}
                 </div>

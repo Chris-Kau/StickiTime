@@ -1,7 +1,8 @@
-import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
-import { join } from 'path'
-import {  is } from '@electron-toolkit/utils'
-const fetch = require('node-fetch')
+import { app, shell, BrowserWindow, ipcMain, screen } from 'electron';
+import { join } from 'path';
+import {  is } from '@electron-toolkit/utils';
+import BookmarkManager from './BookMarkManager';
+const fetch = require('node-fetch');
 
 let bookmarksWindow;
 let addBookmarkWindow;
@@ -19,7 +20,7 @@ function BookmarkHandler(){
             scrollbar: false,
             frame: false,
             thickFrame: false,
-            resizable: false,
+            resizable: true,
             fullscreenable: false,
             roundedCorners: false,
             webPreferences: {
@@ -36,16 +37,12 @@ function BookmarkHandler(){
             bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), 71)
           }
 
-      
           if (is.dev && process.env['ELECTRON_RENDERER_URL']) {
             bookmarksWindow.loadURL(`${process.env['ELECTRON_RENDERER_URL']}#/bookmarks`)
           } else {
             bookmarksWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/bookmarks`)
           }
-      
-          bookmarksWindow.on('close', ()=>{
-            bookmarksWindow = null;
-          })
+          BookmarkManager.bookmarksFolder = bookmarksWindow;
         }else{
           bookmarksWindow.focus()
         }
@@ -70,7 +67,7 @@ function BookmarkHandler(){
             titleBarStyle: "hidden",
             alwaysOnTop: true,
             scrollbar: false,
-            resizable: false,
+            resizable: true,
             roundedCorners: false,
             frame: false,
             thickFrame: false,
@@ -102,7 +99,7 @@ function BookmarkHandler(){
       })
       
       ipcMain.on('addingBookMark', function(event, data) {
-          bookmarksWindow.webContents.send('receive-bookmark', data);
+        BookmarkManager.CreateBookmark(data.name, data.hyperlink)
       });
       
       ipcMain.handle('fetch-favicon', async (_, url) => {
@@ -116,6 +113,10 @@ function BookmarkHandler(){
           return "data:image/png;base64,..."
         }
       })
+
+      ipcMain.on('delete-bookmark', (event, id) => {
+        BookmarkManager.DeleteBookmark(id);
+    });
     app.whenReady().then(()=>{
         screenSize = screen.getPrimaryDisplay().size
         macMenuBarHeight = screen.getPrimaryDisplay().workArea.y;

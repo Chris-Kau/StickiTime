@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TrashIcon from '../../../../resources/icons/regular/trash.svg?react';
 
-function Bookmark({id, name, hyperlink, onDelete}) {
+function Bookmark({id, name, hyperlink}) {
     const [icon, setIcon] = useState('');
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function Bookmark({id, name, hyperlink, onDelete}) {
             </div>
 
             <button 
-                onClick={() => {onDelete(id)}}
+                onClick={() => window.electron.ipcRenderer.send('delete-bookmark', id)}
                 className="justify-items-end text-red-500 hover:text-red-700p">
                 <TrashIcon className="w-4 h-4 fill-[#EFBFA7] transition-all duration-[25ms hover:scale-[120%]"/>
             </button>

@@ -5,8 +5,6 @@ function AddBookMark() {
     const [name, setName] = useState('');
     const [hyperlink, setHyperlink] = useState('');
 
-    const hyperlinkInput = document.getElementById("hyperlinkID")
-
     const sendInfo = (data) => window.electron.ipcRenderer.send('addingBookMark', data);
 
     function submitForm(e) {
@@ -19,10 +17,7 @@ function AddBookMark() {
             newDiv1.innerHTML = "&nbsp;"
         }
 
-        console.log("Selected values:", { name, hyperlink });
-        console.log(hyperlink.toString())
         let url = hyperlink.toString()
-        console.log(url.slice(0, 8))
         let newDiv2 = document.getElementById("ErrorMsgHL")
         if (url.slice(0, 7) == "http://" || url.slice(0, 8) == "https://") {
             sendInfo({ name, hyperlink });
