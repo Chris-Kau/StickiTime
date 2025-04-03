@@ -1,15 +1,18 @@
 @import "tailwindcss";
-#draggable{
+
+#draggable {
     -webkit-app-region: drag;
 }
-#not-draggable{
+
+#not-draggable {
     -webkit-app-region: no-drag;
 }
+
 ul {
     list-style-type: disc;
     margin-left: 1rem;
     padding-left: 1rem;
-  }
+}
 
 @font-face {
     font-family: "Jersey 10";
@@ -18,10 +21,10 @@ ul {
     font-style: normal;
 }
 
-@font-face{
+@font-face {
     font-family: "Pixelify Sans";
     src: url('./fonts/PixelifySans-VariableFont_wght.ttf');
-    font-weight:400;
+    font-weight: 400;
     font-style: normal;
 }
 
@@ -29,13 +32,14 @@ ul {
     font-family: "Jersey 10", sans-serif;
 }
 
-#StickyNoteTextArea{
+#StickyNoteTextArea {
     font-family: "Pixelify Sans", sans-serif;
 }
+
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 [contenteditable][data-placeholder]:empty:before {

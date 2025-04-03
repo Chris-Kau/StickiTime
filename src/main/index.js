@@ -29,12 +29,12 @@ function createWindow() {
       sandbox: false
     }
   })
-  if(process.platform == "darwin"){ //hide macOS traffic lights
+  if (process.platform == "darwin") { //hide macOS traffic lights
     navbarWindow.setWindowButtonVisibility(false);
   }
   navbarWindow.on('ready-to-show', () => {
-     //checks to see if user is on mac :D
-    navbarWindow.setPosition(Math.floor(screenSize.width/2 - screenSize.width / 4), 0) // aAAAAAAAAAAAAHHHHHHHHHHH
+    //checks to see if user is on mac :D
+    navbarWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), 0) // aAAAAAAAAAAAAHHHHHHHHHHH
     navbarWindow.show()
   })
 
@@ -42,7 +42,7 @@ function createWindow() {
     shell.openExternal(details.url)
     return { action: 'deny' }
   })
-  navbarWindow.on('closed', ()=>{
+  navbarWindow.on('closed', () => {
     if (process.platform !== 'darwin') {
       console.log(process.platform)
       app.quit()
@@ -102,14 +102,14 @@ app.on('window-all-closed', () => {
 ipcMain.on('minimize-window', (event, isStickyNote) => {
   const window = BrowserWindow.getFocusedWindow();
   if (window) {
-    if(!isStickyNote)
+    if (!isStickyNote)
       window.minimize();
   }
 });
 ipcMain.on('pin-window', () => {
   const window = BrowserWindow.getFocusedWindow();
   if (window) {
-      window.setAlwaysOnTop(!window.isAlwaysOnTop());
+    window.setAlwaysOnTop(!window.isAlwaysOnTop());
   }
 });
 

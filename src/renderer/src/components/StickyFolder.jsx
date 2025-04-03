@@ -19,7 +19,7 @@ function StickyFolder() {
 
         return () => {
             window.electron.ipcRenderer.removeListener(
-                'receive-notes', 
+                'receive-notes',
                 handleReceiveNotes
             );
         };
@@ -28,17 +28,18 @@ function StickyFolder() {
     return (
         <div className="flex bg-[#F8EAA6] w-screen h-screen justify-center align-middle items-center p-1">
             <div className="flex flex-col w-full max-w-[100% - 4px] h-full bg-[#F8EAA6] p-[2px]">
-                <div 
-                className="flex flex-row flex-1 overflow-x-auto overflow-y-hidden gap-2"
-                style={{ 
-                    msOverflowStyle: 'none',
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "#cac195 transparent"}}
-                onWheel={(e) => {
-                    e.currentTarget.scrollLeft += e.deltaY / 2; 
-                }}>
+                <div
+                    className="flex flex-row flex-1 overflow-x-auto overflow-y-hidden gap-2"
+                    style={{
+                        msOverflowStyle: 'none',
+                        scrollbarWidth: "thin",
+                        scrollbarColor: "#cac195 transparent"
+                    }}
+                    onWheel={(e) => {
+                        e.currentTarget.scrollLeft += e.deltaY / 2;
+                    }}>
                     {stickynotes.map((note) => (
-                        <StickyNoteIcon 
+                        <StickyNoteIcon
                             key={note.id}
                             id={note.id}
                             name={note.name}

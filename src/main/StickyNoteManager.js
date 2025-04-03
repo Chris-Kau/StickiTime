@@ -1,8 +1,8 @@
 import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-class StickyNoteManager{
-    constructor(){
+class StickyNoteManager {
+    constructor() {
         this.notes = new Map();
         this.folderWindow = null;
 
@@ -18,7 +18,7 @@ class StickyNoteManager{
 
     }
 
-    createNote(){
+    createNote() {
         const noteWindow = new BrowserWindow({
             width: 300,
             height: 300,
@@ -31,7 +31,7 @@ class StickyNoteManager{
             roundedCorners: false,
             frame: false,
             thickFrame: false,
-            webPreferences:{
+            webPreferences: {
                 preload: join(__dirname, '../preload/index.js'),
                 sandbox: false
             }
@@ -54,7 +54,7 @@ class StickyNoteManager{
     }
 
     updateFolder() {
-        if(this.folderWindow) {
+        if (this.folderWindow) {
             // Only send minimized notes
             const minimizedNotes = Array.from(this.notes.values())
                 .filter(note => note.minimized)
@@ -63,14 +63,14 @@ class StickyNoteManager{
                     name: note.name,
                     color: note.color,
                 }));
-            
+
             this.folderWindow.webContents.send('receive-notes', minimizedNotes);
         }
     }
 
     restoreNote(id) {
         const note = this.notes.get(id);
-        if(note) {
+        if (note) {
             note.minimized = false;
             this.updateFolder();
         }
@@ -78,16 +78,16 @@ class StickyNoteManager{
 
     updateNoteName(id, newName) {  // Changed parameter name from 'new' to 'newName'
         const note = this.notes.get(id);
-        if(note) {
+        if (note) {
             note.name = newName;
             this.updateFolder();
             note.window.webContents.send('update-name', newName);
         }
     }
 
-    updateNoteColor(id, newColor){
+    updateNoteColor(id, newColor) {
         const note = this.notes.get(id);
-        if(note){
+        if (note) {
             note.color = newColor;
             this.updateFolder();
         }

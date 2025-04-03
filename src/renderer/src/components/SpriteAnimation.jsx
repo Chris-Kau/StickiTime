@@ -25,7 +25,7 @@ const SpriteAnimation = () => {
       style={{
         backgroundImage: `url(${spriteSheet})`,
         backgroundPosition: `${x}px ${y}px`,
-        backgroundSize: `${columns * frameWidth}px auto`, 
+        backgroundSize: `${columns * frameWidth}px auto`,
         // clipPath: "inset(16px 18px 15px 18px)", // top right bottom left
       }}
     />
