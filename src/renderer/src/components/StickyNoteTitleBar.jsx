@@ -7,6 +7,8 @@ import MinusIcon from '../../../../resources/icons/yay_xm_icons/mm.svg?react';
 import MinusSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse mm.svg?react';
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
+
+import BarsIcon from '../../../../resources/icons/regular/bars.svg?react';
 function StickyNoteTitleBar() {
     const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
     const [isClosedHovered, setIsClosedHovered] = useState(false);
@@ -14,8 +16,8 @@ function StickyNoteTitleBar() {
     const [isMinimizeHovered, setIsMinimizeHovered] = useState(false);
     const [name, setName] = useState('');
     const [windowId, setWindowId] = useState(null);
-    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window', true);
 
+    const minimizeWindow = () => window.electron.ipcRenderer.send('minimize-window', true);
 
     useEffect(() => {
         window.electron.ipcRenderer.invoke('get-window-id').then(id => {
@@ -39,10 +41,16 @@ function StickyNoteTitleBar() {
             setIsWindowPinned(true)
     };
     return (
-        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
-            <div className="grid grid-cols-2 grid-rows-1 min-w-full">
-                <div className="flex float-left">
-                    <div className="flex justify-center items-center align-middle pt-2 pb-2 gap-x-3">
+        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto">
+            <div className="flex flex-row justify-between min-w-full gap-x-3">
+                <div className="flex flex-1">
+                    <div className="flex flex-1 items-center gap-x-3">
+                        {/* Bars */}
+                        <div id="draggable" className="cursor-move z-10">
+                            <BarsIcon className="w-5 h-5" id="draggable"/>
+                        </div>
+                        {/* Thumbtack */}
+
                         <div
                             id="not-draggable"
                             onClick={() => pinWindow()}
@@ -51,26 +59,29 @@ function StickyNoteTitleBar() {
                         >
                             {isWindowPinned ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />))}
                         </div>
+                        {/* Title Text Area */}
                         <input
                             type="text"
-                            id="not-draggable"  // Add this to prevent drag interference
+                            id="not-draggable"
+                            maxLength={12}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="text-2xl bg-transparent text-[#747474] border-none outline-none placeholder-[#747474] w-full px-2"
+                            className="text-2xl bg-transparent text-[#747474] border-none outline-none placeholder-[#747474] w-full"
                             placeholder="Untitled"
                         />
                     </div>
 
 
                 </div>
-                <div className="flex justify-end gap-3">
-                    <div className="flex justify-center items-center align-middle pt-2 pb-2 gap-2">
+                {/* close and minimize buttons */}
+                <div className="flex items-center justify-end">
+                    <div className="flex items-center gap-2">
                         <div
                             onClick={() => minimizeWindow()}
                             id="not-draggable"
                             onMouseEnter={() => setIsMinimizeHovered(true)}
                             onMouseLeave={() => setIsMinimizeHovered(false)}>
-                            {isMinimizeHovered ? (<MinusSolidIcon className="hover:scale-115" />) : (<MinusIcon className="hover:scale-115" />)}
+                            {isMinimizeHovered ? (<MinusSolidIcon className="hover:scale-115 cursor-pointer" />) : (<MinusIcon className="hover:scale-115 cursor-pointer" />)}
                         </div>
 
                         <div
@@ -78,7 +89,7 @@ function StickyNoteTitleBar() {
                             id="not-draggable"
                             onMouseEnter={() => setIsClosedHovered(true)}
                             onMouseLeave={() => setIsClosedHovered(false)}>
-                            {isClosedHovered ? (<WindowCloseSolidIcon className="hover:scale-115" />) : (<WindowCloseIcon className="hover:scale-115" />)}
+                            {isClosedHovered ? (<WindowCloseSolidIcon className="hover:scale-115 cursor-pointer" />) : (<WindowCloseIcon className="hover:scale-115 cursor-pointer" />)}
                         </div>
                     </div>
                 </div>

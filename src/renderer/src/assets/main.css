@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 #draggable {
+    cursor: move;
     -webkit-app-region: drag;
+    background-color: white;
 }
 
 #not-draggable {
