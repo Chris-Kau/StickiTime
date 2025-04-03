@@ -46,11 +46,10 @@ function StickyNoteTitleBar() {
                 <div className="flex flex-1">
                     <div className="flex flex-1 items-center gap-x-3">
                         {/* Bars */}
-                        <div id="draggable" className="cursor-move z-10">
-                            <BarsIcon className="w-5 h-5" id="draggable"/>
+                        <div id="draggable" className="z-10 w-5 h-5">
+                            <BarsIcon className="w-5 h-5" style={{cursor: "move"}}/>
                         </div>
                         {/* Thumbtack */}
-
                         <div
                             id="not-draggable"
                             onClick={() => pinWindow()}

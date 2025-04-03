@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 #draggable {
-    cursor: move;
     -webkit-app-region: drag;
-    background-color: white;
+    cursor: move;
+}
+
+#draggable svg {
+    pointer-events: none; /* Makes SVG inherit parent cursor */
+    cursor: move;
 }
 
 #not-draggable {
     -webkit-app-region: no-drag;
+    cursor: default; /* Explicitly set cursor */
 }
 
 ul {
