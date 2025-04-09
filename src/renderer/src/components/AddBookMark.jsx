@@ -31,7 +31,7 @@ function AddBookMark() {
     //Text field : #FFEEDA
     //Font: #747474
     return (
-        <div className="flex flex-col bg-[#EFBFA7] h-screen max-h-screen max-w-screen p-2 text-[#747474]">
+        <div className="flex flex-col bg-[#EFBFA7] h-screen max-h-screen max-w-screen p-2 text-[#747474] pt-0">
             <TitleBar hasThumbtack={false} topleftText={"Add Bookmark"}></TitleBar>
             <div className="flex bg-[#FFFBF5] w-full h-full max-h-[100%-15px] border py-1 px-5">
                 <form onSubmit={(e) => submitForm(e)} className="grid grid-cols-1 gap-0 w-screen max-w-full">

@@ -22,9 +22,9 @@ function TitleBar({ hasThumbtack = true, topleftText = "", isStickyNote = false 
     };
     return (
         <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
-            <div className="grid grid-cols-2 grid-rows-1 min-w-full">
-                <div className="flex float-left">
-                    {(hasThumbtack ? (<div className="flex justify-center items-center align-middle pt-2 pb-2">
+            <div className="flex flex-row justify-between min-w-full  gap-x-3">
+                <div className="flex flex-1">
+                    {(hasThumbtack ? (<div className="flex justify-center items-center align-middle gap-x-3">
                         <div
                             id="not-draggable"
                             onClick={() => pinWindow()}
@@ -33,12 +33,15 @@ function TitleBar({ hasThumbtack = true, topleftText = "", isStickyNote = false 
                         >
                             {isWindowPinned ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />))}
                         </div>
-                    </div>) : <div className="text-3xl">{topleftText}</div>)}
+                        <div>
+                            <p className="text-[25px] text-[#747474] ">{topleftText}</p>
+                        </div>
+                    </div> ) : <div className="text-[25px] text-[#747474]">{topleftText}</div>)}
 
 
                 </div>
                 <div className="flex justify-end gap-3">
-                    <div className="flex justify-center items-center align-middle pt-2 pb-2 gap-2">
+                    <div className="flex justify-center items-center align-middle gap-x-2">
                         <div
                             onClick={() => minimizeWindow()}
                             id="not-draggable"

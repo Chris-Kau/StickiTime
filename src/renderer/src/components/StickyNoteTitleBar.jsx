@@ -55,15 +55,18 @@ function StickyNoteTitleBar() {
                             {isWindowPinned ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />))}
                         </div>
                         {/* Title Text Area */}
-                        <input
-                            type="text"
-                            id="not-draggable"
-                            maxLength={8}
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            className="text-[30px] justify-center bg-black/5 text-[#747474] border-none outline-none placeholder-[#747474] w-[100px] h-[70%] cursor-text"
-                            placeholder="Untitled"
-                        />
+                        <div className='flex w-[110px] h-[70%]'>
+                            <input
+                                type="text"
+                                id="not-draggable"
+                                maxLength={10}
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                className="text-[25px] justify-center bg-black/5 text-[#747474] border-none outline-none placeholder-[#747474] w-full h-full p-1 cursor-text"
+                                placeholder="Untitled"
+                            />
+                        </div>
+            
                     </div>
 
 
