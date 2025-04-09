@@ -83,7 +83,7 @@ function StickyNote() {
             </div>
 
             {/* //Footer */}
-            <div className="flex justify-between items-center w-full min-h-[10%] mt-1 mb-3 px-1">
+            <div className="flex justify-between items-center w-full min-h-[10%] mt-1 mb-[0.6rem] px-1">
                 <div className="flex min-h-full w-full p-2 mx-auto max-w-[calc(100%-8px)]" style={{ backgroundColor: stickyNoteColor[1] }}>
                     <div className="grid grid-cols-6">
                         <button onClick={() => formatText('bold')} className="flex justify-center items-center min-w-6 min-h-6 fill-[#747474] hover:fill-black rounded-sm"><BoldIcon className="w-3.5 h-3.5" /></button>

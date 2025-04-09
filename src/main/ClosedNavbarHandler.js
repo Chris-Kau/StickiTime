@@ -49,6 +49,7 @@ function closedNavbarHandler() {
 
   ipcMain.on("minimize-navbar", (event, action, window) => {
     if (!closedNavbar) return;
+    console.log("test1");
     if (action == 'close') {
       closedNavbar.show()
     } else {

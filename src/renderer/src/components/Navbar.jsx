@@ -38,7 +38,6 @@ function Navbar() {
         window.electron.ipcRenderer.send('minimize-navbar', "close")
         window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
         window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
-
     }
 
 

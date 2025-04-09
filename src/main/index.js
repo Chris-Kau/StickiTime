@@ -124,7 +124,7 @@ ipcMain.on('close-open-window', (event, action = 'close', window) => {
   }
 })
 
-ipcMain.on("minimize-navbar", (event, action, window) => {
+ipcMain.on("minimize-navbar", (event, action) => {
   if (!navbarWindow) return;
   if (action == 'close') {
     navbarWindow.hide()

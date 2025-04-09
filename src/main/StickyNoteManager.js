@@ -1,6 +1,5 @@
-import { app, shell, BrowserWindow, ipcMain, screen } from 'electron'
+import { BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
-import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 class StickyNoteManager {
     constructor() {
         this.notes = new Map();
@@ -55,7 +54,6 @@ class StickyNoteManager {
 
     updateFolder() {
         if (this.folderWindow) {
-            // Only send minimized notes
             const minimizedNotes = Array.from(this.notes.values())
                 .filter(note => note.minimized)
                 .map(note => ({
@@ -76,7 +74,7 @@ class StickyNoteManager {
         }
     }
 
-    updateNoteName(id, newName) {  // Changed parameter name from 'new' to 'newName'
+    updateNoteName(id, newName) { 
         const note = this.notes.get(id);
         if (note) {
             note.name = newName;

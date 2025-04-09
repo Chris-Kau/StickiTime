@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-const crypto = require('crypto'); // Add this import
+const crypto = require('crypto');
 
 class BookmarkManager {
     constructor() {

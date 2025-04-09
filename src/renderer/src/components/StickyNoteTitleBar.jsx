@@ -8,7 +8,6 @@ import MinusSolidIcon from '../../../../resources/icons/yay_xm_icons/inverse mm.
 import ThumbtackIcon from '../../../../resources/icons/regular/thumbtack.svg?react';
 import ThumbtackSolidIcon from '../../../../resources/icons/solid/thumbtack-solid.svg?react';
 
-import BarsIcon from '../../../../resources/icons/regular/bars.svg?react';
 function StickyNoteTitleBar() {
     const [isThumbtackHovered, setIsThumbtackHovered] = useState(false);
     const [isClosedHovered, setIsClosedHovered] = useState(false);
@@ -41,7 +40,7 @@ function StickyNoteTitleBar() {
             setIsWindowPinned(true)
     };
     return (
-        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
+        <div className="flex justify-center self-center h-full items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
             <div className="flex flex-row justify-between min-w-full gap-x-3">
                 <div className="flex flex-1">
                     <div className="flex flex-1 items-center gap-x-3">
@@ -55,7 +54,7 @@ function StickyNoteTitleBar() {
                             {isWindowPinned ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (isThumbtackHovered ? (<ThumbtackSolidIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />) : (<ThumbtackIcon className="w-5 h-5 hover:scale-125 fill-[#747474]" />))}
                         </div>
                         {/* Title Text Area */}
-                        <div className='flex w-[110px] h-[70%]'>
+                        <div className='flex w-[100px] h-[70%]'>
                             <input
                                 type="text"
                                 id="not-draggable"
