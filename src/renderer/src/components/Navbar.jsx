@@ -19,8 +19,8 @@ function Navbar() {
         if (bookmarksWindowState == "open") {
             setBookmarksWindowState("close")
             setStickyFolderWindowState("open")
-        } else {
             window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
+        } else {
             setBookmarksWindowState("open")
         }
 
@@ -30,8 +30,8 @@ function Navbar() {
         if (stickyFolderWindowState == "open") {
             setStickyFolderWindowState("close")
             setBookmarksWindowState("open")
-        } else {
             window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
+        } else {
             setStickyFolderWindowState("open")
         }
     }
