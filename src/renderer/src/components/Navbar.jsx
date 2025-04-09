@@ -18,7 +18,9 @@ function Navbar() {
         window.electron.ipcRenderer.send("close-open-window", bookmarksWindowState, "bookmarksWindow")
         if (bookmarksWindowState == "open") {
             setBookmarksWindowState("close")
+            setStickyFolderWindowState("open")
         } else {
+            window.electron.ipcRenderer.send('close-open-window', "close", "stickyFolderWindow")
             setBookmarksWindowState("open")
         }
 
@@ -27,7 +29,9 @@ function Navbar() {
         window.electron.ipcRenderer.send('close-open-window', stickyFolderWindowState, "stickyFolderWindow")
         if (stickyFolderWindowState == "open") {
             setStickyFolderWindowState("close")
+            setBookmarksWindowState("open")
         } else {
+            window.electron.ipcRenderer.send('close-open-window', "close", "bookmarksWindow")
             setStickyFolderWindowState("open")
         }
     }
