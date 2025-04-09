@@ -41,14 +41,10 @@ function StickyNoteTitleBar() {
             setIsWindowPinned(true)
     };
     return (
-        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto">
+        <div className="flex justify-center self-center items-center w-full max-w-[calc(100%-16px)] mx-auto" id="draggable">
             <div className="flex flex-row justify-between min-w-full gap-x-3">
                 <div className="flex flex-1">
                     <div className="flex flex-1 items-center gap-x-3">
-                        {/* Bars */}
-                        <div id="draggable" className="z-10 w-5 h-5">
-                            <BarsIcon className="w-5 h-5" style={{cursor: "move"}}/>
-                        </div>
                         {/* Thumbtack */}
                         <div
                             id="not-draggable"
@@ -62,10 +58,10 @@ function StickyNoteTitleBar() {
                         <input
                             type="text"
                             id="not-draggable"
-                            maxLength={12}
+                            maxLength={8}
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            className="text-2xl bg-transparent text-[#747474] border-none outline-none placeholder-[#747474] w-full"
+                            className="text-[30px] justify-center bg-black/5 text-[#747474] border-none outline-none placeholder-[#747474] w-[100px] h-[70%] cursor-text"
                             placeholder="Untitled"
                         />
                     </div>
