@@ -1,6 +1,7 @@
 import { app, shell, BrowserWindow, ipcMain, screen, globalShortcut } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
+const { autoUpdater } = require('electron-updater')
 import icon from '../../resources/icon.png?asset'
 import stickyNoteHandler from "./StickyNoteHandler.js"
 import bookmarkHandler from "./BookmarkHandler.js"
@@ -64,9 +65,11 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
-  screenSize = screen.getPrimaryDisplay().size // or ?????????????????????????
+  screenSize = screen.getPrimaryDisplay().size 
+  autoUpdater.checkForUpdatesAndNotify();
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.StickiTime')
+  
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
