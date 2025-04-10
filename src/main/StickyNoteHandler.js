@@ -41,11 +41,13 @@ function LoadStickyNote() {
         stickyFolderWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/stickynotefolder`)
       }
 
+      stickyFolderWindow.on("close",(e)=>{
+        e.preventDefault();
+      })
+      
       StickyNoteManager.folderWindow = stickyFolderWindow;
     }
   }
-
-
 
   ipcMain.handle('open-sticky-note', () => {
     stickyNoteWindow = StickyNoteManager.createNote()

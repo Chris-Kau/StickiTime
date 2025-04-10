@@ -30,6 +30,9 @@ function BookmarkHandler() {
       });
 
       bookmarksWindow.hide()
+      bookmarksWindow.on("close",(e)=>{
+        e.preventDefault();
+      })
       if (process.platform == "darwin") {//checks to see if user is on mac :D
         bookmarksWindow.setPosition(Math.floor(screenSize.width / 2 - screenSize.width / 4), (process.platform == "darwin" ? (71 + macMenuBarHeight) : 71))
         bookmarksWindow.setWindowButtonVisibility(false);

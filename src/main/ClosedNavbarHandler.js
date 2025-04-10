@@ -26,6 +26,14 @@ function closedNavbarHandler() {
         }
       });
 
+      closedNavbar.on("close",(e)=>{
+        e.preventDefault();
+      })
+      closedNavbar.on('closed', () => {
+        if (process.platform !== 'darwin') {
+          app.quit()
+        }
+      })
       closedNavbar.hide()
       if (process.platform == "darwin") { //hide macOS traffic lights
         closedNavbar.setWindowButtonVisibility(false);
