@@ -44,12 +44,9 @@ function createWindow() {
   })
   navbarWindow.on('closed', () => {
     if (process.platform !== 'darwin') {
-      app.quit()
+      console.log("closed");
+      app.exit(0)
     }
-  })
-
-  navbarWindow.on("close",()=>{
-    app.quit()
   })
 
 
