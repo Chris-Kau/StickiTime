@@ -1,14 +1,15 @@
 {
   "name": "stickitime",
-  "version": "1.0.1",
-  "description": "An Electron application with React",
+  "version": "1.0.2",
+  "description": "StickiTime",
   "main": "./out/main/index.js",
-  "author": "example.com",
+  "author": "Chris Kau | Ashley Cho | Phu Nguyen",
   "homepage": "https://electron-vite.org",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint --cache .",
     "start": "electron-vite preview",
+    "dist": "electron-builder --publish always",
     "dev": "electron-vite dev",
     "build": "electron-vite build",
     "postinstall": "electron-builder install-app-deps",

@@ -35,7 +35,7 @@ class StickyNoteManager {
                 sandbox: false
             }
         });
-
+        noteWindow.setIcon(join(__dirname, "../../icon.png"))
         const noteId = noteWindow.id
         this.notes.set(noteId, {
             id: noteId,

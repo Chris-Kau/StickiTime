@@ -28,7 +28,7 @@ function BookmarkHandler() {
           sandbox: false
         }
       });
-
+      bookmarksWindow.setIcon(join(__dirname, "../../icon.png"))
       bookmarksWindow.hide()
       bookmarksWindow.on("close",(e)=>{
         e.preventDefault();

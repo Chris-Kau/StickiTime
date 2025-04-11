@@ -30,6 +30,8 @@ function createWindow() {
       sandbox: false
     }
   })
+
+  navbarWindow.setIcon(join(__dirname, "../../icon.png"))
   if (process.platform == "darwin") { //hide macOS traffic lights
     navbarWindow.setWindowButtonVisibility(false);
   }
@@ -65,6 +67,7 @@ function createWindow() {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
+  app.setName("StickiTime")
   screenSize = screen.getPrimaryDisplay().size 
   autoUpdater.checkForUpdatesAndNotify();
   // Set app user model id for windows
