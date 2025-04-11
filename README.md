@@ -23,6 +23,33 @@ A sleek productivity desktop application that features a pomodoro timer, bookmar
 - Customize note color via the square button in the corner
 - Minimized notes are stored in the **Stickies** folder for easy reopening
 
+## Build Instructions
+
+> **Prerequisites**:  
+> - [Node.js](https://nodejs.org/) (v18 or newer recommended)  
+> - [Yarn](https://classic.yarnpkg.com/lang/en/) or npm  
+> - OS-specific tools if building native apps (see below)
+
+### 1. Clone and Install Dependencies
+```bash
+git clone https://github.com/Chris-Kau/StickiTime.git
+cd StickiTime
+yarn install #or npm
+```
+### 2. Run in Development Mode
+```bash
+#use yarn or npm
+yarn dev 
+```
+
+### 3. Build for Production
+```bash
+#use yarn or npm
+yarn build:win
+yarn build:linux
+yarn build:mac
+```
+
 
 ## Credits
 - Icons by [Pixel Icon Library](https://github.com/hackernoon/pixel-icon-library)
