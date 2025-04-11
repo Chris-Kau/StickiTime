@@ -1,6 +1,6 @@
 {
   "name": "stickitime",
-  "version": "1.0.2",
+  "version": "1.0.1",
   "description": "StickiTime",
   "main": "./out/main/index.js",
   "author": "Chris Kau | Ashley Cho | Phu Nguyen",

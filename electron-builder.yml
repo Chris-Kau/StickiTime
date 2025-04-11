@@ -12,7 +12,7 @@ asarUnpack:
   - resources/**
 win:
   executableName: StickiTime
-  icon: ./icon.ico
+  icon: ./resources/icon.ico
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}
@@ -26,7 +26,7 @@ mac:
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
-  icon: ./icon.icns
+  icon: ./resources/icon.icns
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
@@ -36,7 +36,7 @@ linux:
     - deb
   maintainer: electronjs.org
   category: Utility
-  icon: ./icon.png
+  icon: ./resources/icon.png
 appImage:
   artifactName: ${name}-${version}.${ext}
 npmRebuild: false

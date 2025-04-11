@@ -18,7 +18,7 @@ function Handler() {
           sandbox: false
         }
       });
-      timerWindow.setIcon(join(__dirname, "../../icon.png"))
+      timerWindow.setIcon(join(__dirname, "../../resources/icon.png"))
       if (process.platform == "darwin") { //hide macOS traffic lights
         timerWindow.setWindowButtonVisibility(false);
       }

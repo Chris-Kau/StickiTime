@@ -25,7 +25,7 @@ function closedNavbarHandler() {
           sandbox: false
         }
       });
-      closedNavbar.setIcon(join(__dirname, "../../icon.png"))
+      closedNavbar.setIcon(join(__dirname, "../../resources/icon.png"))
       closedNavbar.on("close",(e)=>{
         e.preventDefault();
       })

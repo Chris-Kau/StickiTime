@@ -27,7 +27,7 @@ function LoadStickyNote() {
         }
       });
       stickyFolderWindow.hide()
-      stickyFolderWindow.setIcon(join(__dirname, "../../icon.png"))
+      stickyFolderWindow.setIcon(join(__dirname, "../../resources/icon.png"))
       if (process.platform == "darwin") { //hide macOS traffic lights
         stickyFolderWindow.setWindowButtonVisibility(false);
       }

@@ -31,7 +31,7 @@ function createWindow() {
     }
   })
 
-  navbarWindow.setIcon(join(__dirname, "../../icon.png"))
+  navbarWindow.setIcon(join(__dirname, "../../resources/icon.png"))
   if (process.platform == "darwin") { //hide macOS traffic lights
     navbarWindow.setWindowButtonVisibility(false);
   }
