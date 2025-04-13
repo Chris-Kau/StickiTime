@@ -6,6 +6,17 @@ let stickyNoteWindow;
 let stickyFolderWindow;
 let screenSize;
 let macMenuBarHeight;
+
+function cleanupStickyFolder(){
+  if(stickyFolderWindow){
+    console.log("close sticky folder")
+    StickyNoteManager.clearFolder();
+    stickyFolderWindow.removeAllListeners("close");
+    stickyFolderWindow.destroy();
+    stickyFolderWindow = null;
+  }
+}
+
 function LoadStickyNote() {
   function createStickyFolder() {
     if (!stickyFolderWindow) {
@@ -48,6 +59,8 @@ function LoadStickyNote() {
       StickyNoteManager.folderWindow = stickyFolderWindow;
     }
   }
+
+
 
   ipcMain.handle('open-sticky-note', () => {
     stickyNoteWindow = StickyNoteManager.createNote()
@@ -100,3 +113,4 @@ function LoadStickyNote() {
 }
 
 export default LoadStickyNote;
+export { cleanupStickyFolder };

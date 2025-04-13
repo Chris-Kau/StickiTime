@@ -3,10 +3,10 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 const { autoUpdater } = require('electron-updater')
 import icon from '../../resources/icon.png?asset'
-import stickyNoteHandler from "./StickyNoteHandler.js"
-import bookmarkHandler from "./BookmarkHandler.js"
+import stickyNoteHandler, { cleanupStickyFolder } from "./StickyNoteHandler.js"
+import bookmarkHandler, { cleanupBookmarkFolder } from "./BookmarkHandler.js"
 import timerHandler from "./PomodoroTimerHandler.js"
-import closedNavbarHandler from './ClosedNavbarHandler.js'
+import closedNavbarHandler, { cleanupClosedNavbar } from './ClosedNavbarHandler.js'
 let screenSize;
 let navbarWindow;
 
@@ -46,9 +46,11 @@ function createWindow() {
     return { action: 'deny' }
   })
   navbarWindow.on('closed', () => {
+    cleanupStickyFolder();
+    cleanupBookmarkFolder();
+    cleanupClosedNavbar();
     if (process.platform !== 'darwin') {
-      console.log("closed");
-      app.exit(0)
+      app.quit()
     }
   })
 

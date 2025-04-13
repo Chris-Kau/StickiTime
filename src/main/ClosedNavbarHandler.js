@@ -3,6 +3,15 @@ import { join } from 'path'
 import { is } from '@electron-toolkit/utils'
 let screenSize;
 let closedNavbar
+
+function cleanupClosedNavbar(){
+  if(closedNavbar){
+    closedNavbar.removeAllListeners("close");
+    closedNavbar.destroy();
+    closedNavbar = null;
+  }
+}
+
 function closedNavbarHandler() {
   function openclosedNavbar() {
     if (!closedNavbar) {
@@ -70,3 +79,4 @@ function closedNavbarHandler() {
 }
 
 export default closedNavbarHandler;
+export {cleanupClosedNavbar};

@@ -1,4 +1,4 @@
-import { BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 class StickyNoteManager {
     constructor() {
@@ -66,6 +66,14 @@ class StickyNoteManager {
         }
     }
 
+    clearFolder(){
+        this.notes.forEach(note => {
+            if(note.window){
+                note.window.destroy();
+            }
+        });
+    }
+
     restoreNote(id) {
         const note = this.notes.get(id);
         if (note) {
@@ -90,8 +98,6 @@ class StickyNoteManager {
             this.updateFolder();
         }
     }
-
-
 }
 
 export default new StickyNoteManager();

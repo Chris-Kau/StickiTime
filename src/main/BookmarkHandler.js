@@ -8,6 +8,24 @@ let bookmarksWindow;
 let addBookmarkWindow;
 let screenSize;
 let macMenuBarHeight;
+
+function cleanupBookmarkFolder(){
+  if(bookmarksWindow){
+    console.log("close bookmarks")
+    bookmarksWindow.removeAllListeners("close");
+    bookmarksWindow.destroy();
+    bookmarksWindow = null;
+  }
+
+  if(addBookmarkWindow){
+    console.log("close add bookmark")
+    addBookmarkWindow.removeAllListeners("close");
+    addBookmarkWindow.destroy();
+    addBookmarkWindow = null;
+  }
+}
+
+
 function BookmarkHandler() {
   function openBookmark() {
     if (!bookmarksWindow) {
@@ -92,7 +110,6 @@ function BookmarkHandler() {
       } else {
         addBookmarkWindow.loadURL(`file://${join(__dirname, '../renderer/index.html')}#/addbookmark`)
       }
-
       addBookmarkWindow.on('close', () => {
         addBookmarkWindow = null;
       })
@@ -128,3 +145,4 @@ function BookmarkHandler() {
 }
 
 export default BookmarkHandler
+export {cleanupBookmarkFolder};
