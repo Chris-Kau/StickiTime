@@ -10,7 +10,6 @@ import closedNavbarHandler, { cleanupClosedNavbar, closedNavbar } from './Closed
 let screenSize;
 let navbarWindow;
 function createWindow() {
-  // Create the browser window.
   navbarWindow = new BrowserWindow({
     width: Math.floor(screenSize.width / 2), // aAAAAAAAAAAAAHHHHHHHHHHH
     height: 70,
