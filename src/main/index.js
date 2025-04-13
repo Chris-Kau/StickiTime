@@ -6,10 +6,9 @@ import icon from '../../resources/icon.png?asset'
 import stickyNoteHandler, { cleanupStickyFolder } from "./StickyNoteHandler.js"
 import bookmarkHandler, { cleanupBookmarkFolder } from "./BookmarkHandler.js"
 import timerHandler from "./PomodoroTimerHandler.js"
-import closedNavbarHandler, { cleanupClosedNavbar } from './ClosedNavbarHandler.js'
+import closedNavbarHandler, { cleanupClosedNavbar, closedNavbar } from './ClosedNavbarHandler.js'
 let screenSize;
 let navbarWindow;
-
 function createWindow() {
   // Create the browser window.
   navbarWindow = new BrowserWindow({
@@ -139,7 +138,10 @@ ipcMain.on("minimize-navbar", (event, action) => {
   if (!navbarWindow) return;
   if (action == 'close') {
     navbarWindow.hide();
+    closedNavbar.show()
+    closedNavbar.focus()
   } else {
+    closedNavbar.hide()
     navbarWindow.show();
     navbarWindow.focus();
   }

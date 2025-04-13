@@ -63,20 +63,7 @@ function closedNavbarHandler() {
     screenSize = screen.getPrimaryDisplay().size
     openclosedNavbar()
   })
-
-  ipcMain.on("minimize-navbar", (event, action, window) => {
-    if (!closedNavbar) return;
-    console.log("test1");
-    if (action == 'close') {
-      closedNavbar.show()
-    } else {
-      closedNavbar.hide()
-    }
-  })
-
-
-
 }
 
 export default closedNavbarHandler;
-export {cleanupClosedNavbar};
+export {cleanupClosedNavbar, closedNavbar};

@@ -11,14 +11,12 @@ let macMenuBarHeight;
 
 function cleanupBookmarkFolder(){
   if(bookmarksWindow){
-    console.log("close bookmarks")
     bookmarksWindow.removeAllListeners("close");
     bookmarksWindow.destroy();
     bookmarksWindow = null;
   }
 
   if(addBookmarkWindow){
-    console.log("close add bookmark")
     addBookmarkWindow.removeAllListeners("close");
     addBookmarkWindow.destroy();
     addBookmarkWindow = null;
