@@ -9,7 +9,6 @@ let macMenuBarHeight;
 
 function cleanupStickyFolder(){
   if(stickyFolderWindow){
-    console.log("close sticky folder")
     StickyNoteManager.clearFolder();
     stickyFolderWindow.removeAllListeners("close");
     stickyFolderWindow.destroy();
