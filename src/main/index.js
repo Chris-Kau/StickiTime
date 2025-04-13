@@ -146,3 +146,12 @@ ipcMain.on("minimize-navbar", (event, action) => {
     navbarWindow.focus();
   }
 })
+
+ipcMain.on("close-app", ()=>{
+  cleanupStickyFolder();
+  cleanupBookmarkFolder();
+  cleanupClosedNavbar();
+  if (process.platform !== 'darwin') {
+    app.quit()
+  }
+})
